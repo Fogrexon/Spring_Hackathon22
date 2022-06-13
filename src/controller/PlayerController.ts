@@ -1,7 +1,12 @@
+import { MapData, PlayerData } from "../DataType";
+
 export class PlayerController {
-  constructor(playerData, mapData) {
+  private playerData: PlayerData;
+  private mapData: MapData;
+  constructor(playerData: PlayerData, mapData: MapData) {
     this.playerData = playerData;
     this.mapData = mapData;
+
     window.addEventListener('keydown', (e) => {
       switch (e.key) {
         case 'ArrowUp':
@@ -27,7 +32,7 @@ export class PlayerController {
     });
   }
 
-  render(ctx) {
+  render(ctx: CanvasRenderingContext2D) {
     const {
       x, y,
     } = this.playerData;

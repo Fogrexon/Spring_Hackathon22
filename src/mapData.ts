@@ -1,4 +1,6 @@
-export const mapData = {
+import { MapData } from "./DataType";
+
+export const mapData: MapData = {
   data: `
 ##########
 #...#....#

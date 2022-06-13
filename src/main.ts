@@ -1,5 +1,5 @@
 import './style.css';
-import { mapData } from './map';
+import { mapData } from './DataType';
 import { MapController } from './controller/MapController';
 import { PlayerController } from './controller/PlayerController';
 
@@ -9,8 +9,10 @@ const playerData = {
 };
 
 const Hackathon = () => {
-  const canvas = document.getElementById('cnv');
+  const canvas = document.getElementById('cnv') as HTMLCanvasElement;
+  if (!canvas) throw new Error('Canvas not found');
   const ctx = canvas.getContext('2d');
+  if (!ctx) throw new Error('Canvas context not found');
 
   const mapController = new MapController(mapData);
   const playerController = new PlayerController(playerData, mapData);
