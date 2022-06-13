@@ -1,9 +1,12 @@
+import { MapData } from "../DataType";
+
 export class MapController {
-  constructor(mapData) {
+  private mapData: MapData;
+  constructor(mapData: MapData) {
     this.mapData = mapData;
   }
 
-  render(ctx) {
+  render(ctx: CanvasRenderingContext2D) {
     const { data, width, height } = this.mapData;
     const { width: canvasWidth, height: canvasHeight } = ctx.canvas;
     const dx = canvasWidth / width;

@@ -1,5 +1,5 @@
 import './style.css';
-import { mapData } from './DataType';
+import { mapData } from './mapData';
 import { MapController } from './controller/MapController';
 import { PlayerController } from './controller/PlayerController';
 
