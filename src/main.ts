@@ -3,8 +3,9 @@ import { mapData } from './mapData';
 import { MapController } from './controller/MapController';
 import { PlayerController } from './controller/PlayerController';
 import { settings } from './settings';
+import { PlayerData } from './DataType';
 
-const playerData = {
+const playerData: PlayerData = {
   x: 0,
   y: 0,
 };
