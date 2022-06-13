@@ -1,4 +1,4 @@
-import { MapData } from "./DataType";
+import { MapData } from './DataType';
 
 export const mapData: MapData = {
   data: `

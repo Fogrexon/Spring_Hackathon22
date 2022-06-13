@@ -23,14 +23,16 @@ const Hackathon = () => {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    switch(settings.mode) {
+    switch (settings.mode) {
       case 'title':
+        // title rendering
         break;
       case 'game':
         mapController.render(ctx);
         playerController.render(ctx);
         break;
       case 'result':
+        // result rendering
         break;
       default:
         throw new Error('Unknown mode');
