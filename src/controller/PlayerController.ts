@@ -1,8 +1,8 @@
-import { MapData, PlayerData } from "../DataType";
+import { MapData, PlayerData } from '../DataType';
 
 export class PlayerController {
-
   private playerData: PlayerData;
+
   private mapData: MapData;
 
   constructor(playerData: PlayerData, mapData: MapData) {

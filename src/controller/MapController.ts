@@ -1,7 +1,8 @@
-import { MapData } from "../DataType";
+import { MapData } from '../DataType';
 
 export class MapController {
   private mapData: MapData;
+
   constructor(mapData: MapData) {
     this.mapData = mapData;
   }
