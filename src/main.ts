@@ -2,6 +2,7 @@ import './style.css';
 import { mapData } from './mapData';
 import { MapController } from './controller/MapController';
 import { PlayerController } from './controller/PlayerController';
+import { settings } from './settings';
 
 const playerData = {
   x: 0,
@@ -21,8 +22,19 @@ const Hackathon = () => {
     requestAnimationFrame(tick);
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    mapController.render(ctx);
-    playerController.render(ctx);
+
+    switch(settings.mode) {
+      case 'title':
+        break;
+      case 'game':
+        mapController.render(ctx);
+        playerController.render(ctx);
+        break;
+      case 'result':
+        break;
+      default:
+        throw new Error('Unknown mode');
+    }
   };
 
   tick();
