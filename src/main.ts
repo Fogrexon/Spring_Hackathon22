@@ -56,6 +56,14 @@ const Hackathon = () => {
     }
   )
 
+  //clickイベントがあるときの処理(スタート画面でどこかをクリックするとゲーム画面に飛ぶ)
+  canvas.addEventListener('click',() => {
+    if(settings.mode=='title'){
+      settings.mode='game';
+    }
+    },true
+  )
+
   const tick = () => {
     requestAnimationFrame(tick);
 
