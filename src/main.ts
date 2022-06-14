@@ -3,11 +3,12 @@ import { mapData1 } from './data/mapData';
 import { mapRender } from './renderer/mapRender';
 import { playerRender } from './renderer/playerRender';
 import { settings } from './settings';
-
-import { Drawing } from './screenDrawing';
-
 import { playerMover } from './mover/playerMover';
 import { playerInitializer } from './initializer/playerInitializer';
+import {
+  titleRendering, resultRendering,
+} from './renderer/screenRenderer';
+import { titleKeydownEvent, resultKeydownEvent } from './initializer/screenInitializer';
 
 const Hackathon = () => {
   const canvas = document.getElementById('cnv') as HTMLCanvasElement;
@@ -24,10 +25,9 @@ const Hackathon = () => {
   playerInitializer(playerData, nowMap);
 
   // keydownイベントが起こったときの画面遷移
-  Drawing.keyPress(); // from ./screenDrawing.ts
+  titleKeydownEvent(); // from ./screenDrawing.ts
+  resultKeydownEvent();
 
-  // clickイベントがあるときの処理
-  Drawing.onClick(); // from ./screenDrawing.ts
   const tick = () => {
     requestAnimationFrame(tick);
 
@@ -36,7 +36,7 @@ const Hackathon = () => {
     switch (settings.mode) {
       case 'title': {
         // title rendering
-        Drawing.titleDrawing(ctx); // from ./screenDrawing.ts
+        titleRendering(ctx); // from ./screenDrawing.ts
         break;
       }
       case 'game':
@@ -46,7 +46,7 @@ const Hackathon = () => {
         break;
       case 'result':
         // result rendering
-        Drawing.resultDrawing(ctx); // from ./screenDrawing.ts
+        resultRendering(ctx); // from ./screenDrawing.ts
         break;
       default:
         throw new Error('Unknown mode');
