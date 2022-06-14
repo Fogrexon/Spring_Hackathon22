@@ -1,6 +1,6 @@
 import { settings } from '../settings';
 
-export function titleKeydownEvent() {
+export const titleKeydownEvent = () => {
   if (settings.mode === 'title') {
     window.addEventListener('keydown', (e) => {
       switch (e.key) {
@@ -12,9 +12,9 @@ export function titleKeydownEvent() {
       }
     });
   }
-}
+};
 
-export function resultKeydownEvent() {
+export const resultKeydownEvent = () => {
   if (settings.mode === 'result') {
     window.addEventListener('keydown', (e) => {
       switch (e.key) {
@@ -26,4 +26,4 @@ export function resultKeydownEvent() {
       }
     });
   }
-}
+};
