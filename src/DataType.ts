@@ -8,3 +8,9 @@ export interface PlayerData {
   x: number;
   y: number;
 }
+
+export interface GhostData {
+  ghostx: number;
+  ghosty: number;
+  ghostspeed: number;
+}

@@ -3,12 +3,36 @@ import { mapData } from './mapData';
 import { MapController } from './controller/MapController';
 import { PlayerController } from './controller/PlayerController';
 import { settings } from './settings';
-import { PlayerData } from './DataType';
+import { GhostData, PlayerData } from './DataType';
 
 const playerData: PlayerData = {
   x: 0,
   y: 0,
 };
+
+const ghostData: GhostData = {
+  ghostx: 30;
+  ghosty: 30; //ghostの初期位置
+  ghostspeed: 1;
+}
+function ghostmove(){ //数秒おきに移動する
+setTimeout(ghostroop(),ghostspeed*1000)
+}
+
+
+function ghostroop(){//ある方向に一マス移動する
+  for 
+  var random = Math.floor( Math.random() * 4 );
+  if (random==0);
+  ghostx+=1
+  else if (random==1);
+  ghostx-=1
+  else if (random==2);
+  ghosty+=1
+  else;
+  ghosty-=1
+}
+
 
 const Hackathon = () => {
   const canvas = document.getElementById('cnv') as HTMLCanvasElement;
