@@ -5,6 +5,10 @@ import { playerRender } from './renderer/playerRender';
 import { settings } from './settings';
 import { playerMover } from './mover/playerMover';
 import { playerInitializer } from './initializer/playerInitializer';
+import {
+  titleRendering, resultRendering,
+} from './renderer/screenRenderer';
+import { titleKeydownEvent, resultKeydownEvent } from './initializer/screenInitializer';
 
 const Hackathon = () => {
   const canvas = document.getElementById('cnv') as HTMLCanvasElement;
@@ -20,15 +24,21 @@ const Hackathon = () => {
   const nowMap = mapData1;
   playerInitializer(playerData, nowMap);
 
+  // keydownイベントが起こったときの画面遷移
+  titleKeydownEvent(); // from ./screenDrawing.ts
+  resultKeydownEvent();
+
   const tick = () => {
     requestAnimationFrame(tick);
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     switch (settings.mode) {
-      case 'title':
+      case 'title': {
         // title rendering
+        titleRendering(ctx); // from ./screenDrawing.ts
         break;
+      }
       case 'game':
         playerMover(playerData);
         mapRender(nowMap, ctx);
@@ -36,6 +46,7 @@ const Hackathon = () => {
         break;
       case 'result':
         // result rendering
+        resultRendering(ctx); // from ./screenDrawing.ts
         break;
       default:
         throw new Error('Unknown mode');
