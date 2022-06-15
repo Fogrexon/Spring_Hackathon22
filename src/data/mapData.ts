@@ -16,7 +16,7 @@ export const mapData1: MapData = {
 #.#...##.#
 #...#....#
 ##########
-`,
+`.replace(/\n/g, ''),
   width: 10,
   height: 10,
 };

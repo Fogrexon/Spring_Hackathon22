@@ -3,6 +3,8 @@ import { mapData1 } from './data/mapData';
 import { mapRender } from './renderer/mapRender';
 import { playerRender } from './renderer/playerRender';
 import { settings } from './settings';
+import { playerMover } from './mover/playerMover';
+import { playerInitializer } from './initializer/playerInitializer';
 
 const Hackathon = () => {
   const canvas = document.getElementById('cnv') as HTMLCanvasElement;
@@ -16,6 +18,7 @@ const Hackathon = () => {
   };
 
   const nowMap = mapData1;
+  playerInitializer(playerData, nowMap);
 
   const tick = () => {
     requestAnimationFrame(tick);
@@ -27,6 +30,7 @@ const Hackathon = () => {
         // title rendering
         break;
       case 'game':
+        playerMover(playerData);
         mapRender(nowMap, ctx);
         playerRender(playerData, nowMap, ctx);
         break;
