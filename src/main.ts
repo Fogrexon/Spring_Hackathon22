@@ -1,14 +1,8 @@
 import './style.css';
-import { mapData } from './mapData';
-import { MapController } from './controller/MapController';
-import { PlayerController } from './controller/PlayerController';
+import { mapData1 } from './data/mapData';
+import { mapRender } from './renderer/mapRender';
+import { playerRender } from './renderer/playerRender';
 import { settings } from './settings';
-import { PlayerData } from './DataType';
-
-const playerData: PlayerData = {
-  x: 0,
-  y: 0,
-};
 
 const Hackathon = () => {
   const canvas = document.getElementById('cnv') as HTMLCanvasElement;
@@ -16,8 +10,12 @@ const Hackathon = () => {
   const ctx = canvas.getContext('2d');
   if (!ctx) throw new Error('Canvas context not found');
 
-  const mapController = new MapController(mapData);
-  const playerController = new PlayerController(playerData, mapData);
+  const playerData = {
+    x: 0,
+    y: 0,
+  };
+
+  const nowMap = mapData1;
 
   const tick = () => {
     requestAnimationFrame(tick);
@@ -29,8 +27,8 @@ const Hackathon = () => {
         // title rendering
         break;
       case 'game':
-        mapController.render(ctx);
-        playerController.render(ctx);
+        mapRender(nowMap, ctx);
+        playerRender(playerData, nowMap, ctx);
         break;
       case 'result':
         // result rendering

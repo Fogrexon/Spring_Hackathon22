@@ -1,6 +1,10 @@
-import { MapData } from './DataType';
+export interface MapData {
+  width: number;
+  height: number;
+  data: string;
+}
 
-export const mapData: MapData = {
+export const mapData1: MapData = {
   data: `
 ##########
 #...#....#
