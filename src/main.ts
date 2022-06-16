@@ -1,14 +1,14 @@
 import './style.css';
-import { mapData } from './mapData';
-import { MapController } from './controller/MapController';
-import { PlayerController } from './controller/PlayerController';
+import { mapData1 } from './data/mapData';
+import { mapRender } from './renderer/mapRender';
+import { playerRender } from './renderer/playerRender';
 import { settings } from './settings';
+
 import { GhostData, PlayerData } from './DataType';
 
-const playerData: PlayerData = {
-  x: 0,
-  y: 0,
-};
+import { playerMover } from './mover/playerMover';
+import { playerInitializer } from './initializer/playerInitializer';
+
 
 const ghostData: GhostData = {
   ghostx: 30;
@@ -21,17 +21,20 @@ setTimeout(ghostroop(),ghostspeed*1000)
 
 
 function ghostroop(){//ある方向に一マス移動する
-  for 
-  var random = Math.floor( Math.random() * 4 );
-  if (random==0);
-  ghostx+=1
-  else if (random==1);
-  ghostx-=1
-  else if (random==2);
-  ghosty+=1
-  else;
-  ghosty-=1
+  while(Mode=='game'){
+    var random = Math.floor( Math.random() * 4 );//壁は考えていないし、外のWallも考えていない。とりまランダム移動
+    if (random==0);
+    ghostx+=1
+    else if (random==1);
+    ghostx-=1
+    else if (random==2);
+    ghosty+=1
+    else;
+    ghosty-=1
+  }
 }
+
+ghostmove();
 
 
 const Hackathon = () => {
@@ -40,8 +43,13 @@ const Hackathon = () => {
   const ctx = canvas.getContext('2d');
   if (!ctx) throw new Error('Canvas context not found');
 
-  const mapController = new MapController(mapData);
-  const playerController = new PlayerController(playerData, mapData);
+  const playerData = {
+    x: 0,
+    y: 0,
+  };
+
+  const nowMap = mapData1;
+  playerInitializer(playerData, nowMap);
 
   const tick = () => {
     requestAnimationFrame(tick);
@@ -53,8 +61,9 @@ const Hackathon = () => {
         // title rendering
         break;
       case 'game':
-        mapController.render(ctx);
-        playerController.render(ctx);
+        playerMover(playerData);
+        mapRender(nowMap, ctx);
+        playerRender(playerData, nowMap, ctx);
         break;
       case 'result':
         // result rendering
