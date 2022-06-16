@@ -1,9 +1,11 @@
+import { getCurrentMap } from '../controller/stageController';
 import { MapData } from '../data/mapData';
 import { PlayerData } from '../data/playerData';
 import { settings } from '../settings';
 
-export const playerInitializer = (playerData: PlayerData, mapData: MapData) => {
+export const playerInitializer = (playerData: PlayerData) => {
   window.addEventListener('keydown', (e) => {
+    const mapData = getCurrentMap()
     if (settings.mode !== 'game') return;
     switch (e.key) {
       case 'ArrowUp':

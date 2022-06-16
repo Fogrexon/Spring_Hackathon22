@@ -5,6 +5,7 @@ import { playerRender } from './renderer/playerRender';
 import { settings } from './settings';
 import { playerMover } from './mover/playerMover';
 import { playerInitializer } from './initializer/playerInitializer';
+import { getCurrentMap } from './controller/stageController';
 
 const Hackathon = () => {
   const canvas = document.getElementById('cnv') as HTMLCanvasElement;
@@ -17,7 +18,7 @@ const Hackathon = () => {
     y: 0,
   };
 
-  const nowMap = mapData1;
+  // const nowMap = mapData1;
   playerInitializer(playerData, nowMap);
 
   const tick = () => {
@@ -25,12 +26,15 @@ const Hackathon = () => {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    const nowMap = getCurrentMap();
+
     switch (settings.mode) {
       case 'title':
         // title rendering
         break;
       case 'game':
-        playerMover(playerData);
+        playerMover(playerData, nowMap);
+
         mapRender(nowMap, ctx);
         playerRender(playerData, nowMap, ctx);
         break;
