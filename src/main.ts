@@ -17,8 +17,8 @@ const Hackathon = () => {
   if (!ctx) throw new Error('Canvas context not found');
 
   const playerData = {
-    x: 0,
-    y: 0,
+    x: 1,
+    y: 1,
   };
 
   const nowMap = mapData1;
