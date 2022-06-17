@@ -1,5 +1,3 @@
-
-
 import { PlayerData } from '../data/playerData';
 import { settings } from '../settings';
 
@@ -7,7 +5,6 @@ export const playerInitializer = (playerData: PlayerData) => {
   window.addEventListener('keydown', (e) => {
     playerData.preX = playerData.x;
     playerData.preY = playerData.y;
-
 
     if (settings.mode !== 'game') return;
     switch (e.key) {
