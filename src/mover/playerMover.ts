@@ -1,5 +1,4 @@
 /* eslint-disable max-len */
-import { checkNouhin, getItemFromMap } from '../controller/stageController';
 import { MapData } from '../data/mapData';
 import { PlayerData } from '../data/playerData';
 
@@ -54,10 +53,21 @@ export const playerMover = (playerData: PlayerData, mapData: MapData) => {
 
   // プレイヤーがアイテムを所持していない状態でアイテムをゲットしたとき
   // プレイヤーの次の位置を取得する
+  const getItemFromMap = (player: PlayerData, map: MapData) => {
+    for (let i = 0; i < map.items.length; i += 1) {
+      if (player.x === map.items[i][0] && player.y === map.items[i][1]) {
+        map.exist[i] = false;
+        return i;
+      }
+    }
+    return -1;
+  };
 
   if (getItemFromMap(playerData, mapData) !== -1 && playerData.have === 0) {
     playerData.have += 1;
   }
+
+  const checkNouhin = (player: PlayerData, map: MapData) => (player.x === map.post[0] && player.y === map.post[1]);
 
   // プレイヤーが納品したとき
 
