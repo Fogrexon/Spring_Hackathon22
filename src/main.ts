@@ -10,6 +10,7 @@ import {
   titleRendering, resultRendering,
 } from './renderer/screenRenderer';
 import { titleKeydownEvent, resultKeydownEvent } from './initializer/screenInitializer';
+import { PlayerData } from './data/playerData';
 
 
 const Hackathon = () => {
@@ -18,12 +19,18 @@ const Hackathon = () => {
   const ctx = canvas.getContext('2d');
   if (!ctx) throw new Error('Canvas context not found');
 
-  const playerData = {
+  const playerData:PlayerData = {
     x: 1,
     y: 1,
+    direction: 'None',
+    targetX: 1,
+    targetY: 1,
+    preX: 1,
+    preY: 1,
+    start: Date.now() / 1000,
   };
 
-  // const nowMap = mapData1;
+
   playerInitializer(playerData);
 
   // keydownイベントが起こったときの画面遷移
@@ -45,8 +52,8 @@ const Hackathon = () => {
         break;
       }
       case 'game':
-        
-        playerMover(playerData);
+
+        playerMover(playerData, nowMap);
 
         mapRender(nowMap, ctx);
         playerRender(playerData, nowMap, ctx);

@@ -1,42 +1,34 @@
-import { getCurrentMap } from '../controller/stageController';
+
+
 import { PlayerData } from '../data/playerData';
 import { settings } from '../settings';
 
-
 export const playerInitializer = (playerData: PlayerData) => {
-  
-
-  
-
   window.addEventListener('keydown', (e) => {
-    const { x, y } = playerData;
-    const mapData = getCurrentMap()
-    const checkCollisionWall = (x:number, y:number) => {
-      const { width } = mapData;
-      return mapData.data[y * width + x] !== '#';
-    };
+    playerData.preX = playerData.x;
+    playerData.preY = playerData.y;
+
 
     if (settings.mode !== 'game') return;
     switch (e.key) {
       case 'ArrowUp':
-        if (checkCollisionWall(x, y - 1)) playerData.y -= 1;
+        playerData.direction = 'ArrowUp';
         break;
       case 'ArrowDown':
-        if (checkCollisionWall(x, y + 1)) playerData.y += 1;
+        playerData.direction = 'ArrowDown';
         break;
       case 'ArrowLeft':
-        if (checkCollisionWall(x - 1, y)) playerData.x -= 1;
+        playerData.direction = 'ArrowLeft';
         break;
       case 'ArrowRight':
-        if (checkCollisionWall(x + 1, y)) playerData.x += 1;
+        playerData.direction = 'ArrowRight';
         break;
       default:
         break;
     }
-    if (playerData.y < 0) playerData.y = 0;
-    else if (playerData.y >= mapData.height) {
-      playerData.y = mapData.height - 1;
-    } else if (playerData.x < 0) playerData.x = 0;
-    else if (playerData.x >= mapData.width) playerData.x = mapData.width - 1;
+  });
+
+  window.addEventListener('keyup', () => {
+    playerData.direction = 'None';
   });
 };
