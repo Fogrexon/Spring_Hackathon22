@@ -34,7 +34,7 @@ export const mapData1: MapData = {
 `.replace(/\n/g, ''),
   width: 20,
   height: 20,
-  items: [[3, 3], [15, 15], [18, 1],[1,18]],
+  items: [[3, 3], [16, 16], [18, 1],[1,18]],
   exist: [true, true, true,true],
   post: [10, 10],
 };
