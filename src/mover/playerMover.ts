@@ -51,11 +51,11 @@ export const playerMover = (playerData: PlayerData, mapData: MapData) => {
   }
   // playerData.x += (playerData.targetX - playerData.preX) * ((t  - start) / interval);
 
-  // プレイヤーがアイテムをゲットしたとき
+  // プレイヤーがアイテムを所持していない状態でアイテムをゲットしたとき
   const checkGettingItem = (player: PlayerData, map: MapData) => {
     let check = false;
     for (let i = 0; i < map.items.length; i += 1) {
-      if (player.x === map.items[i][0] && player.y === map.items[i][1]) {
+      if (player.x === map.items[i][0] && player.y === map.items[i][1] && player.have === 0) {
         check = true;
       }
     }
