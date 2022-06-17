@@ -52,10 +52,26 @@ export const playerMover = (playerData: PlayerData, mapData: MapData) => {
   // playerData.x += (playerData.targetX - playerData.preX) * ((t  - start) / interval);
 
   // プレイヤーがアイテムを所持していない状態でアイテムをゲットしたとき
+  // プレイヤーの次の位置を取得する
+  const nextPosition = (player: PlayerData) => {
+    switch (player.direction) {
+      case 'ArrowUp':
+        return [player.x, player.y - 1];
+      case 'ArrowDown':
+        return [player.x, player.y];
+      case 'ArrowLeft':
+        return [player.x - 1, player.y];
+      case 'ArrowRight':
+        return [player.x + 1, player.y];
+      default:
+        return [player.x, player.y];
+    }
+  };
+
   const checkGettingItem = (player: PlayerData, map: MapData) => {
     let check = false;
     for (let i = 0; i < map.items.length; i += 1) {
-      if (player.x === map.items[i][0] && player.y === map.items[i][1] && player.have === 0) {
+      if (nextPosition(player) === map.items[i] && player.have === 0) {
         check = true;
       }
     }
@@ -69,7 +85,7 @@ export const playerMover = (playerData: PlayerData, mapData: MapData) => {
   // プレイヤーが納品したとき
   const checkNouhin = (player: PlayerData, map: MapData) => {
     let check = false;
-    if (player.x === map.post[0] && player.y === map.post[1]) check = true;
+    if (nextPosition(player) === map.post) check = true;
     return check;
   };
 
