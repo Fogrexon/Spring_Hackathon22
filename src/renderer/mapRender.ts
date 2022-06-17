@@ -20,5 +20,16 @@ export const mapRender = (mapData: MapData, ctx: CanvasRenderingContext2D) => {
       ctx.fillRect(x * dx, y * dy, dx, dy);
     }
   }
-  
+
+
+  // アイテムの描画
+  ctx.fillStyle = '#00f';
+  for (let i = 0; i < mapData.items.length; i += 1) {
+    if (mapData.exist[i]) ctx.fillRect(mapData.items[i][0] * dx, mapData.items[i][1] * dy, dx, dy);
+  }
+
+  // 納品場所の描画
+  ctx.fillStyle = '#0f0';
+  ctx.fillRect(mapData.post[0] * dx, mapData.post[1] * dy, dx, dy);
+
 };

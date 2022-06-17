@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import {
   MapData, mapData1, mapData2, mapData3,
 } from '../data/mapData';
