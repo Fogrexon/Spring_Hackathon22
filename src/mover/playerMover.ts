@@ -50,4 +50,31 @@ export const playerMover = (playerData: PlayerData, mapData: MapData) => {
     }
   }
   // playerData.x += (playerData.targetX - playerData.preX) * ((t  - start) / interval);
+
+  // プレイヤーがアイテムをゲットしたとき
+  const checkGettingItem = (player: PlayerData, map: MapData) => {
+    let check = false;
+    for (let i = 0; i < map.items.length; i += 1) {
+      if (player.x === map.items[i][0] && player.y === map.items[i][1]) {
+        check = true;
+      }
+    }
+    return check;
+  };
+
+  if (checkGettingItem(playerData, mapData)) {
+    playerData.have += 1;
+  }
+
+  // プレイヤーが納品したとき
+  const checkNouhin = (player: PlayerData, map: MapData) => {
+    let check = false;
+    if (player.x === map.post[0] && player.y === map.post[1]) check = true;
+    return check;
+  };
+
+  if (checkNouhin(playerData, mapData)) {
+    playerData.nouhin += playerData.have;
+    playerData.have = 0;
+  }
 };
