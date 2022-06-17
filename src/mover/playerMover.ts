@@ -2,6 +2,8 @@
 import { MapData } from '../data/mapData';
 import { PlayerData } from '../data/playerData';
 
+// プレイヤーがアイテムをゲットした時の処理を書く必要がある。
+// プレイヤーが納品した時の処理を書く
 export const playerMover = (playerData: PlayerData, mapData: MapData) => {
   // noting to do
   const checkCollisionWall = (x:number, y:number) => {

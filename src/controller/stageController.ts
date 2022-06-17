@@ -3,6 +3,8 @@ import {
 } from '../data/mapData';
 import { settings } from '../settings';
 
+// mapData.exist[]を書き換える処理を書く(アイテムが取得されたときに)
+
 const stageData = {
   current: 0 as number,
   maps: [
