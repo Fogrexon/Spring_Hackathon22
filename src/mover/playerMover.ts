@@ -6,7 +6,7 @@ import { PlayerData } from '../data/playerData';
 // プレイヤーの次の位置を取得する
 const getItemFromMap = (player: PlayerData, map: MapData) => {
   for (let i = 0; i < map.items.length; i += 1) {
-    if (player.preX === map.items[i][0] && player.preY === map.items[i][1]) {
+    if (player.preX === map.items[i][0] && player.preY === map.items[i][1] && player.have === 0) {
       map.exist[i] = false;
       return i;
     }
@@ -15,7 +15,7 @@ const getItemFromMap = (player: PlayerData, map: MapData) => {
 };
 
 // プレイヤーが納品した時の処理を書く
-const checkNouhin = (player: PlayerData, map: MapData) => (player.x === map.post[0] && player.y === map.post[1]);
+const checkNouhin = (player: PlayerData, map: MapData) => (player.preX === map.post[0] && player.preY === map.post[1]);
 
 export const playerMover = (playerData: PlayerData, mapData: MapData) => {
   // noting to do
