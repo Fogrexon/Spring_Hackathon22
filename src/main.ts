@@ -4,7 +4,7 @@ import { mapRender } from './renderer/mapRender';
 import { playerRender } from './renderer/playerRender';
 import { settings } from './settings';
 
-import { GhostData, PlayerData } from './DataType';
+import { PlayerData } from './data/playerData';
 
 import { playerMover } from './mover/playerMover';
 import { playerInitializer } from './initializer/playerInitializer';
@@ -12,33 +12,30 @@ import {
   titleRendering, resultRendering,
 } from './renderer/screenRenderer';
 import { titleKeydownEvent, resultKeydownEvent } from './initializer/screenInitializer';
+import { GhostData } from './data/ghostData';
 
 
-const ghostData: GhostData = {
-  ghostx: 30;
-  ghosty: 30; //ghostの初期位置
-  ghostspeed: 1;
-}
-function ghostmove(){ //数秒おきに移動する
-setTimeout(ghostroop(),ghostspeed*1000)
-}
+//const ghostData: GhostData = {
+//  ghostx: 30,
+//  ghosty: 30, // ghostの初期位置
+//  ghostspeed: 1,
+//};
+ghostx =30
+ghosty =30
 
 
-function ghostroop(){//ある方向に一マス移動する
-  while(Mode=='game'){
-    var random = Math.floor( Math.random() * 4 );//壁は考えていないし、外のWallも考えていない。とりまランダム移動
-    if (random==0);
-    ghostx+=1
-    else if (random==1);
-    ghostx-=1
-    else if (random==2);
-    ghosty+=1
-    else;
-    ghosty-=1
+const ghostloop = function () {// ある方向に一マス移動する
+  const random = Math.floor(Math.random() * 4);// 壁は考えていないし、外のWallも考えていない。とりまランダム移動
+  if (random === 0) {
+    ghostx += 1;
+  } else if (random === 1) {
+    ghostx -= 1;
+  } else if (random === 2) {
+    ghosty += 1;
+  } else {
+    ghosty -= 1;
   }
-}
-
-ghostmove();
+};
 
 
 const Hackathon = () => {
