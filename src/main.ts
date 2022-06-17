@@ -1,15 +1,17 @@
 import './style.css';
-import { mapData1 } from './data/mapData';
 import { mapRender } from './renderer/mapRender';
 import { playerRender } from './renderer/playerRender';
 import { settings } from './settings';
 import { playerMover } from './mover/playerMover';
 import { playerInitializer } from './initializer/playerInitializer';
+
+import { getCurrentMap } from './controller/stageController';
 import {
   titleRendering, resultRendering,
 } from './renderer/screenRenderer';
 import { titleKeydownEvent, resultKeydownEvent } from './initializer/screenInitializer';
 import { PlayerData } from './data/playerData';
+
 
 const Hackathon = () => {
   const canvas = document.getElementById('cnv') as HTMLCanvasElement;
@@ -28,7 +30,7 @@ const Hackathon = () => {
     start: Date.now() / 1000,
   };
 
-  const nowMap = mapData1;
+
   playerInitializer(playerData);
 
   // keydownイベントが起こったときの画面遷移
@@ -40,6 +42,9 @@ const Hackathon = () => {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    const nowMap = getCurrentMap()
+    console.log(nowMap);
+
     switch (settings.mode) {
       case 'title': {
         // title rendering
@@ -47,7 +52,9 @@ const Hackathon = () => {
         break;
       }
       case 'game':
+
         playerMover(playerData, nowMap);
+
         mapRender(nowMap, ctx);
         playerRender(playerData, nowMap, ctx);
         break;
