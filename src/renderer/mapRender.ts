@@ -1,5 +1,7 @@
 import { MapData } from '../data/mapData';
 
+// アイテムを描画する処理をする必要がある。描画しなくなる必要もある。
+// 納品場所を描画する
 export const mapRender = (mapData: MapData, ctx: CanvasRenderingContext2D) => {
   const { data, width, height } = mapData;
   const { width: canvasWidth, height: canvasHeight } = ctx.canvas;

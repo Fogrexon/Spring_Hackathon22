@@ -12,7 +12,6 @@ import {
 import { titleKeydownEvent, resultKeydownEvent } from './initializer/screenInitializer';
 import { PlayerData } from './data/playerData';
 
-
 const Hackathon = () => {
   const canvas = document.getElementById('cnv') as HTMLCanvasElement;
   if (!canvas) throw new Error('Canvas not found');
@@ -28,8 +27,9 @@ const Hackathon = () => {
     preX: 1,
     preY: 1,
     start: Date.now() / 1000,
+    have: 0,
+    nouhin: 0,
   };
-
 
   playerInitializer(playerData);
 
@@ -42,8 +42,7 @@ const Hackathon = () => {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    const nowMap = getCurrentMap()
-    console.log(nowMap);
+    const nowMap = getCurrentMap();
 
     switch (settings.mode) {
       case 'title': {

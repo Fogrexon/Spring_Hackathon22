@@ -9,4 +9,6 @@ export interface PlayerData {
   preX: number;
   preY: number;
   start: number;
+  have: number; // 今持っているアイテムの数
+  nouhin: number; // 納品したアイテムの数
 }
