@@ -1,5 +1,4 @@
 import { getCurrentMap } from '../controller/stageController';
-import { MapData } from '../data/mapData';
 import { PlayerData } from '../data/playerData';
 import { settings } from '../settings';
 

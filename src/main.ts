@@ -1,5 +1,4 @@
 import './style.css';
-import { mapData1 } from './data/mapData';
 import { mapRender } from './renderer/mapRender';
 import { playerRender } from './renderer/playerRender';
 import { settings } from './settings';
@@ -19,21 +18,23 @@ const Hackathon = () => {
   };
 
   // const nowMap = mapData1;
-  playerInitializer(playerData, nowMap);
+  playerInitializer(playerData);
 
   const tick = () => {
     requestAnimationFrame(tick);
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    const nowMap = getCurrentMap();
+    const nowMap = getCurrentMap()
+    console.log(nowMap);
 
     switch (settings.mode) {
       case 'title':
         // title rendering
         break;
       case 'game':
-        playerMover(playerData, nowMap);
+        
+        playerMover(playerData);
 
         mapRender(nowMap, ctx);
         playerRender(playerData, nowMap, ctx);
