@@ -32,6 +32,8 @@ const Hackathon = () => {
     preX: 1,
     preY: 1,
     start: Date.now() / 1000,
+    have: 0,
+    nouhin: 0,
   };
   const ghostData: GhostData = {
     gx: 10,
@@ -43,7 +45,6 @@ const Hackathon = () => {
     gpreX: 10,
     gpreY: 10,
     gstart: Date.now() / 1000,
-
   };
 
   playerInitializer(playerData);
