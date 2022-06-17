@@ -2,22 +2,33 @@ import { getCurrentMap } from '../controller/stageController';
 import { PlayerData } from '../data/playerData';
 import { settings } from '../settings';
 
+
 export const playerInitializer = (playerData: PlayerData) => {
+  
+
+  
+
   window.addEventListener('keydown', (e) => {
+    const { x, y } = playerData;
     const mapData = getCurrentMap()
+    const checkCollisionWall = (x:number, y:number) => {
+      const { width } = mapData;
+      return mapData.data[y * width + x] !== '#';
+    };
+
     if (settings.mode !== 'game') return;
     switch (e.key) {
       case 'ArrowUp':
-        playerData.y -= 1;
+        if (checkCollisionWall(x, y - 1)) playerData.y -= 1;
         break;
       case 'ArrowDown':
-        playerData.y += 1;
+        if (checkCollisionWall(x, y + 1)) playerData.y += 1;
         break;
       case 'ArrowLeft':
-        playerData.x -= 1;
+        if (checkCollisionWall(x - 1, y)) playerData.x -= 1;
         break;
       case 'ArrowRight':
-        playerData.x += 1;
+        if (checkCollisionWall(x + 1, y)) playerData.x += 1;
         break;
       default:
         break;
