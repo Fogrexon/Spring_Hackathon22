@@ -12,31 +12,15 @@ import {
   titleRendering, resultRendering,
 } from './renderer/screenRenderer';
 import { titleKeydownEvent, resultKeydownEvent } from './initializer/screenInitializer';
+
 import { GhostData } from './data/ghostData';
+import { ghostMover } from './mover/ghostMover'
 
-
-//const ghostData: GhostData = {
-//  ghostx: 30,
-//  ghosty: 30, // ghostの初期位置
-//  ghostspeed: 1,
-//};
-ghostx =30
-ghosty =30
-
-
-const ghostloop = function () {// ある方向に一マス移動する
-  const random = Math.floor(Math.random() * 4);// 壁は考えていないし、外のWallも考えていない。とりまランダム移動
-  if (random === 0) {
-    ghostx += 1;
-  } else if (random === 1) {
-    ghostx -= 1;
-  } else if (random === 2) {
-    ghosty += 1;
-  } else {
-    ghosty -= 1;
-  }
+const ghostData: GhostData = {
+  ghostx: 30,
+  ghosty: 30, // ghostの初期位置
+  ghostspeed: 1,
 };
-
 
 const Hackathon = () => {
   const canvas = document.getElementById('cnv') as HTMLCanvasElement;
@@ -44,13 +28,19 @@ const Hackathon = () => {
   const ctx = canvas.getContext('2d');
   if (!ctx) throw new Error('Canvas context not found');
 
-  const playerData = {
+  const playerData:PlayerData = {
     x: 1,
     y: 1,
+    direction: 'None',
+    targetX: 1,
+    targetY: 1,
+    preX: 1,
+    preY: 1,
+    start: Date.now() / 1000,
   };
 
   const nowMap = mapData1;
-  playerInitializer(playerData, nowMap);
+  playerInitializer(playerData);
 
   // keydownイベントが起こったときの画面遷移
   titleKeydownEvent(); // from ./screenDrawing.ts
@@ -68,7 +58,7 @@ const Hackathon = () => {
         break;
       }
       case 'game':
-        playerMover(playerData);
+        playerMover(playerData, nowMap);
         mapRender(nowMap, ctx);
         playerRender(playerData, nowMap, ctx);
         break;
