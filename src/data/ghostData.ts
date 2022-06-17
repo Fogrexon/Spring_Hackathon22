@@ -1,5 +1,13 @@
+type Direction = 'gUp' | 'gDown' | 'gLeft' | 'gRight' | 'gNone';
+
 export interface GhostData {
-    ghostx: number;
-    ghosty: number;
-    ghostspeed: number;
+    gx: number;
+    gy: number;
+    ginterval: number;
+    gtargetX: number;
+    gtargetY: number;
+    gpreX: number;
+    gpreY: number;
+    gstart: number;
+    gdirect: Direction;
   }

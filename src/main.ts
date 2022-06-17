@@ -15,14 +15,7 @@ import {
 import { titleKeydownEvent, resultKeydownEvent } from './initializer/screenInitializer';
 
 import { GhostData } from './data/ghostData';
-import { ghostMover } from './mover/ghostMover'
-
-const ghostData: GhostData = {
-  ghostx: 30,
-  ghosty: 30, // ghostの初期位置
-  ghostspeed: 1,
-};
-
+import { ghostMover } from './mover/ghostMover';
 
 const Hackathon = () => {
   const canvas = document.getElementById('cnv') as HTMLCanvasElement;
@@ -40,7 +33,18 @@ const Hackathon = () => {
     preY: 1,
     start: Date.now() / 1000,
   };
+  const ghostData: GhostData = {
+    gx: 10,
+    gy: 10, // ghostの初期位置
+    gdirect: 'gNone',
+    ginterval: 0.1, // 一秒で次のマスに移動するとする
+    gtargetX: 10,
+    gtargetY: 10,
+    gpreX: 10,
+    gpreY: 10,
+    gstart: Date.now() / 1000,
 
+  };
 
   playerInitializer(playerData);
 
@@ -53,8 +57,7 @@ const Hackathon = () => {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    const nowMap = getCurrentMap()
-    console.log(nowMap);
+    const nowMap = getCurrentMap();
 
     switch (settings.mode) {
       case 'title': {
@@ -65,7 +68,7 @@ const Hackathon = () => {
       case 'game':
 
         playerMover(playerData, nowMap);
-
+        ghostMover(ghostData, nowMap);
         mapRender(nowMap, ctx);
         playerRender(playerData, nowMap, ctx);
         break;
