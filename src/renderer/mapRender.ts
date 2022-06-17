@@ -18,4 +18,6 @@ export const mapRender = (mapData: MapData, ctx: CanvasRenderingContext2D) => {
       ctx.fillRect(x * dx, y * dy, dx, dy);
     }
   }
+
+  // アイテムの描画
 };
