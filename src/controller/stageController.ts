@@ -22,7 +22,7 @@ export const moveNextMap = () => {
   }
 };
 
-export const getCurrentMap = () => {
+export const getCurrentMap = () => {　
   // 現在のマップを取得
   return stageData.maps[stageData.current];
 }
