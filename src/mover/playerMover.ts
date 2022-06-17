@@ -2,8 +2,21 @@
 import { MapData } from '../data/mapData';
 import { PlayerData } from '../data/playerData';
 
-// プレイヤーがアイテムをゲットした時の処理を書く必要がある。
+// プレイヤーがアイテムを所持していない状態でアイテムをゲットしたとき
+// プレイヤーの次の位置を取得する
+const getItemFromMap = (player: PlayerData, map: MapData) => {
+  for (let i = 0; i < map.items.length; i += 1) {
+    if (player.preX === map.items[i][0] && player.preY === map.items[i][1]) {
+      map.exist[i] = false;
+      return i;
+    }
+  }
+  return -1;
+};
+
 // プレイヤーが納品した時の処理を書く
+const checkNouhin = (player: PlayerData, map: MapData) => (player.x === map.post[0] && player.y === map.post[1]);
+
 export const playerMover = (playerData: PlayerData, mapData: MapData) => {
   // noting to do
   const checkCollisionWall = (x:number, y:number) => {
@@ -48,31 +61,16 @@ export const playerMover = (playerData: PlayerData, mapData: MapData) => {
       playerData.targetX = playerData.preX;
       playerData.targetY = playerData.preY;
     }
+    // アイテム取得時
+    if (getItemFromMap(playerData, mapData) !== -1 && playerData.have === 0) {
+      playerData.have += 1;
+    }
+
+    // プレイヤーが納品したとき
+    if (checkNouhin(playerData, mapData)) {
+      playerData.nouhin += playerData.have;
+      playerData.have = 0;
+    }
   }
   // playerData.x += (playerData.targetX - playerData.preX) * ((t  - start) / interval);
-
-  // プレイヤーがアイテムを所持していない状態でアイテムをゲットしたとき
-  // プレイヤーの次の位置を取得する
-  const getItemFromMap = (player: PlayerData, map: MapData) => {
-    for (let i = 0; i < map.items.length; i += 1) {
-      if (player.x === map.items[i][0] && player.y === map.items[i][1]) {
-        map.exist[i] = false;
-        return i;
-      }
-    }
-    return -1;
-  };
-
-  if (getItemFromMap(playerData, mapData) !== -1 && playerData.have === 0) {
-    playerData.have += 1;
-  }
-
-  const checkNouhin = (player: PlayerData, map: MapData) => (player.x === map.post[0] && player.y === map.post[1]);
-
-  // プレイヤーが納品したとき
-
-  if (checkNouhin(playerData, mapData)) {
-    playerData.nouhin += playerData.have;
-    playerData.have = 0;
-  }
 };
