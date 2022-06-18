@@ -12,9 +12,9 @@ import { gameInitializer } from './initializer/gameInitializer';
 
 import { getCurrentMap } from './controller/stageController';
 import {
-  titleRendering, resultRendering,
+  titleRendering, resultRendering, result2Rrendering,
 } from './renderer/screenRenderer';
-import { titleKeydownEvent, resultKeydownEvent } from './initializer/screenInitializer';
+import { titleKeydownEvent, resultKeydownEvent, result2KeydownEvent } from './initializer/screenInitializer';
 
 import { GhostData } from './data/ghostData';
 import { ghostMover } from './mover/ghostMover';
@@ -56,6 +56,7 @@ const Hackathon = () => {
   // keydownイベントが起こったときの画面遷移
   titleKeydownEvent();
   resultKeydownEvent();
+  result2KeydownEvent();
 
   const tick = () => {
     requestAnimationFrame(tick);
@@ -82,6 +83,10 @@ const Hackathon = () => {
       case 'result':
         // result rendering
         resultRendering(ctx);
+        break;
+      case 'result2':
+        // 失敗時result rendering
+        result2Rrendering(ctx);
         break;
       default:
         throw new Error('Unknown mode');
