@@ -13,5 +13,6 @@ export const playerRender = (
   const dx = canvasWidth / mapData.width;
   const dy = canvasHeight / mapData.height;
   ctx.fillStyle = '#f00';
-  ctx.fillRect(x * dx, y * dy, dx, dy);
+  // 幽霊とぶつかっていないときはプレイヤーを描画する
+  if (playerData.status === 'alive') ctx.fillRect(x * dx, y * dy, dx, dy);
 };
