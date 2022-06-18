@@ -25,7 +25,7 @@ const playerMeetsGhost = (player: PlayerData, ghost: GhostData) => (
   player.x < ghost.gx + 1 && ghost.gx < player.x + 1 && player.y < ghost.gy + 1 && ghost.gy < player.y + 1
 );
 
-export const playerMover = (playerData: PlayerData, mapData: MapData, ghostData: GhostData) => {
+export const playerMover = (playerData: PlayerData, mapData: MapData, ghostDatas: GhostData[]) => {
   // noting to do
   const checkCollisionWall = (x:number, y:number) => {
     const { width } = mapData;
@@ -98,7 +98,9 @@ export const playerMover = (playerData: PlayerData, mapData: MapData, ghostData:
   }
 
   // プレイヤーが幽霊とぶつかったとき、リザルト画面に飛ぶ
-  if (playerMeetsGhost(playerData, ghostData)) {
-    settings.mode = 'result2';
+  for (let i = 0; i < ghostDatas.length; i += 1) {
+    if (playerMeetsGhost(playerData, ghostDatas[i])) {
+      settings.mode = 'result2';
+    }
   }
 };

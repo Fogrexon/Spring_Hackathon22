@@ -1,58 +1,55 @@
 import { GhostData } from '../data/ghostData';
 import { MapData } from '../data/mapData';
+import { PlayerData } from '../data/playerData';
+import { ghostType } from '../type/ghostType';
 
+export const checkCollisionWall = (gx:number, gy:number, mapData: MapData) => {
+  const { width } = mapData;
+  return mapData.data[gy * width + gx] !== '#';
+};
 // ある方向に一マス移動する
-export const ghostMover = (ghostData: GhostData, mapData: MapData) => { // なんでexportするんだっけ
-  const checkCollisionWall = (gx:number, gy:number) => {
-    const { width } = mapData;
-    return mapData.data[gy * width + gx] !== '#';
-  };
+export const ghostMover = (
+  tekito: GhostData,
+  mapData: MapData,
+  playerData: PlayerData,
+) => {
   const gnow = Date.now() / 1000;
-  const ginterval = 0.1;
-  const random = Math.floor(Math.random() * 4);// 壁は考えていないし、外のWallも考えていない。とりまランダム移動
-  // 方向決定
-  if (random === 0) {
-    ghostData.gdirect = 'gUp';
-  } else if (random === 1) {
-    ghostData.gdirect = 'gDown';
-  } else if (random === 2) {
-    ghostData.gdirect = 'gLeft';
-  } else {
-    ghostData.gdirect = 'gRight';
-  }
-  // 座標と動きもろもろ
-  if (gnow - ghostData.gstart < ginterval) {
-    ghostData.gx = (ghostData.gtargetX - ghostData.gpreX)
-    * ((gnow - ghostData.gstart) / ginterval) + ghostData.gpreX; // なめらか移動
-    ghostData.gy = (ghostData.gtargetY - ghostData.gpreY)
-    * ((gnow - ghostData.gstart) / ginterval) + ghostData.gpreY;
+
+  // 座標と動きもろもろ.ここはghostDataで123の区別はつかないのか.ghostDataにghostData1,2,3をいれたい
+
+  if (gnow - tekito.gstart < tekito.ginterval) {
+    tekito.gx = (tekito.gtargetX - tekito.gpreX)
+    * ((gnow - tekito.gstart) / tekito.ginterval) + tekito.gpreX; // なめらか移動
+    tekito.gy = (tekito.gtargetY - tekito.gpreY)
+    * ((gnow - tekito.gstart) / tekito.ginterval) + tekito.gpreY;
   } else { // 到着したとき
-    ghostData.gstart = gnow;
-    ghostData.gpreX = ghostData.gtargetX;
-    ghostData.gpreY = ghostData.gtargetY;
-    switch (ghostData.gdirect) {
+    ghostType(tekito, playerData, mapData); // typeから方向決定
+    tekito.gstart = gnow;
+    tekito.gpreX = tekito.gtargetX;
+    tekito.gpreY = tekito.gtargetY;
+    switch (tekito.gdirect) {
       case 'gUp':
-        ghostData.gtargetX = ghostData.gpreX;
-        ghostData.gtargetY = ghostData.gpreY - 1; // →をx正,↓をy正として考えていることに注意
+        tekito.gtargetX = tekito.gpreX;
+        tekito.gtargetY = tekito.gpreY - 1; // →をx正,↓をy正として考えていることに注意
         break;
       case 'gDown':
-        ghostData.gtargetX = ghostData.gpreX;
-        ghostData.gtargetY = ghostData.gpreY + 1;
+        tekito.gtargetX = tekito.gpreX;
+        tekito.gtargetY = tekito.gpreY + 1;
         break;
       case 'gLeft':
-        ghostData.gtargetX = ghostData.gpreX - 1;
-        ghostData.gtargetY = ghostData.gpreY;
+        tekito.gtargetX = tekito.gpreX - 1;
+        tekito.gtargetY = tekito.gpreY;
         break;
       case 'gRight':
-        ghostData.gtargetX = ghostData.gpreX + 1;
-        ghostData.gtargetY = ghostData.gpreY;
+        tekito.gtargetX = tekito.gpreX + 1;
+        tekito.gtargetY = tekito.gpreY;
         break;
       default:
         throw new Error('ghostDirectionErrorです');
     }
-    if (!checkCollisionWall(ghostData.gtargetX, ghostData.gtargetY)) {
-      ghostData.gtargetX = ghostData.gpreX;
-      ghostData.gtargetY = ghostData.gpreY;
+    if (!checkCollisionWall(tekito.gtargetX, tekito.gtargetY, mapData)) {
+      tekito.gtargetX = tekito.gpreX;
+      tekito.gtargetY = tekito.gpreY;
     }
   }
 };

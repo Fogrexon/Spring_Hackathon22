@@ -37,11 +37,25 @@ const Hackathon = () => {
     nouhin: 0,
     shurui: 'student',
   };
-  const ghostData: GhostData = {
+
+  const ghostData1: GhostData = { // ランダム挙動
+    gtype: 'random',
     gx: 5,
     gy: 5, // ghostの初期位置
     gdirect: 'gNone',
-    ginterval: 0.1, // 一秒で次のマスに移動するとする
+    ginterval: 0.5, // ?秒で次のマスに移動するとする
+    gtargetX: 5,
+    gtargetY: 5,
+    gpreX: 5,
+    gpreY: 5,
+    gstart: Date.now() / 1000,
+  };
+  const ghostData2: GhostData = { // Target挙動
+    gtype: 'chase',
+    gx: 5,
+    gy: 5, // ghostの初期位置
+    gdirect: 'gNone',
+    ginterval: 0.5, // ?秒で次のマスに移動するとする
     gtargetX: 5,
     gtargetY: 5,
     gpreX: 5,
@@ -71,11 +85,13 @@ const Hackathon = () => {
       }
       case 'game':
 
-        playerMover(playerData, nowMap, ghostData);
-        ghostMover(ghostData, nowMap);
+        ghostMover(ghostData1, nowMap, playerData); // ghostData1とか分けたい
+        ghostMover(ghostData2, nowMap, playerData);
+        playerMover(playerData, nowMap, [ghostData1, ghostData2]);
         mapRender(nowMap, ctx);
         playerRender(playerData, nowMap, ctx);
-        ghostRender(ghostData, nowMap, ctx);
+        ghostRender(ghostData1, nowMap, ctx);
+        ghostRender(ghostData2, nowMap, ctx);
         break;
       case 'result':
         // result rendering
