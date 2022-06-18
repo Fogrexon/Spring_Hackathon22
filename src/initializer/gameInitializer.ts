@@ -1,6 +1,7 @@
 import { PlayerData } from '../data/playerData';
 import { GhostData } from '../data/ghostData';
 import { stageReset } from '../controller/stageController';
+import { settings } from '../settings';
 
 export const gameInitializer = (playerData :PlayerData, ghostDatas:GhostData[]) => {
   playerData.x = 10;
@@ -21,4 +22,5 @@ export const gameInitializer = (playerData :PlayerData, ghostDatas:GhostData[]) 
     ghostDatas[i].gpreY = 5;
   }
   stageReset();
+  settings.start= performance.now();
 };
