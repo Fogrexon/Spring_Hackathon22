@@ -1,6 +1,7 @@
 import { PlayerData } from '../data/playerData';
 import { MapData } from '../data/mapData';
 import { GhostData } from '../data/ghostData';
+import { stageReset } from '../controller/stageController';
 
 export const gameInitializer = (playerData :PlayerData, mapData :MapData, ghostData:GhostData) => {
   playerData.x = 10;
@@ -16,4 +17,6 @@ export const gameInitializer = (playerData :PlayerData, mapData :MapData, ghostD
   ghostData.gtargetY = 5;
   ghostData.gpreX = 5;
   ghostData.gpreY = 5;
+
+  stageReset();
 };
