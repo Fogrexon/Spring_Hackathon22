@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build --base=/Spring_Hackathon22/",
+    "build": "tsc && vite build --base=/Spring_Hackathon22/ --out-dir docs",
     "preview": "vite preview",
     "lint": "eslint ./src/**/*.ts",
     "lint:fix": "eslint ./src/**/*.ts --fix"
