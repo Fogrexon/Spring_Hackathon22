@@ -32,11 +32,21 @@ export const playerMover = (playerData: PlayerData, mapData: MapData, ghostData:
     return mapData.data[y * width + x] !== '#';
   };
 
-  // 現在押されているキーがあるとき、その方向にtargetを設定する。そうでないときはtargetを現在位置にする。
-
-  // targetの方向にキャラクターを動かす
   const now = Date.now() / 1000;
-  const interval = 0.1;
+  let interval = 0.1;
+
+  // プレイヤーの種類によってスピードを変える。
+  switch (playerData.shurui) {
+    case 'student':
+      interval = 0.07;
+      break;
+    case 'monk':
+      interval = 0.11;
+      break;
+    case 'exorcist':
+    default:
+      break;
+  }
   // now - start < intervalのとき
   if (now - playerData.start < interval) {
     playerData.x = (playerData.targetX - playerData.preX) * ((now - playerData.start) / interval) + playerData.preX;

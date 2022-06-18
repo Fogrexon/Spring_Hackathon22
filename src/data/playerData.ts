@@ -1,4 +1,5 @@
 type Direction = 'ArrowUp' | 'ArrowDown' | 'ArrowLeft' | 'ArrowRight' | 'None';
+type Shurui = 'student' | 'monk' | 'exorcist';
 
 export interface PlayerData {
   x: number;
@@ -12,4 +13,5 @@ export interface PlayerData {
   start: number;
   have: number; // 今持っているアイテムの数
   nouhin: number; // 納品したアイテムの数
+  shurui: Shurui;
 }
