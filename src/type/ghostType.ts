@@ -22,13 +22,13 @@ export const ghostType = (
   mapData: MapData,
 ) => { // 壁の向きにいかないよ
   const walldirect = (aroundvalue2: AroundValue, tekito2: GhostData, mapData2: MapData) => {
-    if (!checkCollisionWall(tekito2.gx, tekito2.gy - 1, mapData2)) { // 上。壁にいったら距離を10000にする。整数にしろ:target
+    if (!checkCollisionWall(tekito2.gtargetX, tekito2.gtargetY - 1, mapData2)) { // 上。壁にいったら距離を10000
       aroundvalue2.up = 10000;
-    } else if (!checkCollisionWall(tekito2.gx, tekito2.gy + 1, mapData2)) { // 下
+    } if (!checkCollisionWall(tekito2.gtargetX, tekito2.gtargetY + 1, mapData2)) { // 下
       aroundvalue2.down = 10000;
-    } else if (!checkCollisionWall(tekito2.gx - 1, tekito2.gy, mapData2)) { // left
+    } if (!checkCollisionWall(tekito2.gtargetX - 1, tekito2.gtargetY, mapData2)) { // left
       aroundvalue2.left = 10000;
-    } else if (!checkCollisionWall(tekito2.gx + 1, tekito2.gy, mapData2)) { // right
+    } if (!checkCollisionWall(tekito2.gtargetX + 1, tekito2.gtargetY, mapData2)) { // right
       aroundvalue2.right = 10000;
     }
   };

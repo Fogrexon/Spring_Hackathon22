@@ -14,15 +14,14 @@ export const ghostMover = (
   playerData: PlayerData,
 ) => {
   const gnow = Date.now() / 1000;
-  const ginterval = 1; // 遅くしてる
 
   // 座標と動きもろもろ.ここはghostDataで123の区別はつかないのか.ghostDataにghostData1,2,3をいれたい
 
-  if (gnow - tekito.gstart < ginterval) {
+  if (gnow - tekito.gstart < tekito.ginterval) {
     tekito.gx = (tekito.gtargetX - tekito.gpreX)
-    * ((gnow - tekito.gstart) / ginterval) + tekito.gpreX; // なめらか移動
+    * ((gnow - tekito.gstart) / tekito.ginterval) + tekito.gpreX; // なめらか移動
     tekito.gy = (tekito.gtargetY - tekito.gpreY)
-    * ((gnow - tekito.gstart) / ginterval) + tekito.gpreY;
+    * ((gnow - tekito.gstart) / tekito.ginterval) + tekito.gpreY;
   } else { // 到着したとき
     ghostType(tekito, playerData, mapData); // typeから方向決定
     tekito.gstart = gnow;
