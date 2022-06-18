@@ -1,7 +1,7 @@
 import { GhostData } from '../data/ghostData';
 import { MapData } from '../data/mapData';
 import { PlayerData } from '../data/playerData';
-import { AroundValue, ghostType } from '../type/ghostType';
+import { ghostType } from '../type/ghostType';
 
 export const checkCollisionWall = (gx:number, gy:number, mapData: MapData) => {
   const { width } = mapData;
@@ -14,7 +14,7 @@ export const ghostMover = (
   playerData: PlayerData,
 ) => {
   const gnow = Date.now() / 1000;
-  const ginterval = 1;
+  const ginterval = 1; // 遅くしてる
 
   // 座標と動きもろもろ.ここはghostDataで123の区別はつかないのか.ghostDataにghostData1,2,3をいれたい
 

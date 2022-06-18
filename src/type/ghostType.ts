@@ -22,7 +22,7 @@ export const ghostType = (
   mapData: MapData,
 ) => { // 壁の向きにいかないよ
   const walldirect = (aroundvalue2: AroundValue, tekito2: GhostData, mapData2: MapData) => {
-    if (!checkCollisionWall(tekito2.gx, tekito2.gy - 1, mapData2)) { // 上。壁にいったら距離を10000にする
+    if (!checkCollisionWall(tekito2.gx, tekito2.gy - 1, mapData2)) { // 上。壁にいったら距離を10000にする。整数にしろ:target
       aroundvalue2.up = 10000;
     } else if (!checkCollisionWall(tekito2.gx, tekito2.gy + 1, mapData2)) { // 下
       aroundvalue2.down = 10000;
@@ -86,7 +86,6 @@ export const ghostType = (
       break;
     }
     case 'chase': { // 距離での判定
-      checkAroundValue();
       const dx = tekito.gx - playerData.x;
       const dy = tekito.gy - playerData.y;
       aroundvalue.up = dx ** 2 + (dy - 1) ** 2;
@@ -94,6 +93,7 @@ export const ghostType = (
       aroundvalue.left = (dx - 1) ** 2 + dy ** 2;
       aroundvalue.right = (dx + 1) ** 2 + dy ** 2;
       walldirect(aroundvalue, tekito, mapData);
+      backdirect(aroundvalue, tekito);
       MinDirectJudge(aroundvalue, tekito);
       break;
     }
