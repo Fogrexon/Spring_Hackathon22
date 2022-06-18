@@ -17,7 +17,6 @@ import { titleKeydownEvent, resultKeydownEvent } from './initializer/screenIniti
 
 import { GhostData } from './data/ghostData';
 import { ghostMover } from './mover/ghostMover';
-import { ghostRender } from './renderer/ghostRender';
 
 const Hackathon = () => {
   const canvas = document.getElementById('cnv') as HTMLCanvasElement;
@@ -36,6 +35,7 @@ const Hackathon = () => {
     start: Date.now() / 1000,
     have: 0,
     nouhin: 0,
+    status: 'alive',
   };
   const ghostData: GhostData = {
     gx: 5,
@@ -70,7 +70,7 @@ const Hackathon = () => {
       }
       case 'game':
 
-        playerMover(playerData, nowMap);
+        playerMover(playerData, nowMap, ghostData);
         ghostMover(ghostData, nowMap);
         mapRender(nowMap, ctx);
         playerRender(playerData, nowMap, ctx);
