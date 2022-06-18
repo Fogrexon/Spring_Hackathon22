@@ -5,6 +5,8 @@ import heartAnimationSrc from './img/heart_animation.png';
 import playerSrc from './img/player.png';
 import resultSrc from './img/result.png';
 import titleSrc from './img/title.png';
+import wallSrc from './img/wall.png';
+import itemSrc from './img/item.png';
 
 const getImageObject = (src: string) => {
   const img = new Image();
@@ -20,6 +22,8 @@ const images: Record<string, HTMLImageElement> = {
   player: getImageObject(playerSrc),
   result: getImageObject(resultSrc),
   title: getImageObject(titleSrc),
+  wall: getImageObject(wallSrc),
+  item: getImageObject(itemSrc),
 };
 
 export const getImage = (id: string) => images[id];
