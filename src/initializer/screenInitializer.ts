@@ -28,6 +28,9 @@ export const resultKeydownEvent = () => {
   window.addEventListener('keydown', (e) => {
     if (settings.mode === 'result') {
       if (e.key === ' ') settings.mode = 'title';
+      if (e.key === 'e') {
+        window.open(`https://twitter.com/intent/tweet?text=ConSoulを${3}分${3}秒でクリアしました！&hashtags=ConSoul`, '_blank');
+      }
     }
   });
 };
