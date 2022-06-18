@@ -18,6 +18,7 @@ import { titleKeydownEvent, resultKeydownEvent, result2KeydownEvent } from './in
 
 import { GhostData } from './data/ghostData';
 import { ghostMover } from './mover/ghostMover';
+import { resizeField } from './renderer/resizeField';
 
 const Hackathon = () => {
   const canvas = document.getElementById('cnv') as HTMLCanvasElement;
@@ -29,6 +30,7 @@ const Hackathon = () => {
     x: 10,
     y: 10,
     direction: 'None',
+    forward: 'ArrowRight',
     targetX: 10,
     targetY: 10,
     preX: 1,
@@ -86,16 +88,17 @@ const Hackathon = () => {
         break;
       }
       case 'game':
-
         if (preMode === 'title') gameInitializer(playerData, [ghostData1, ghostData2]);
 
         ghostMover(ghostData1, nowMap, playerData); // ghostData1とか分けたい
         ghostMover(ghostData2, nowMap, playerData);
         playerMover(playerData, nowMap, [ghostData1, ghostData2]);
-        mapRender(nowMap, ctx);
-        playerRender(playerData, nowMap, ctx);
-        ghostRender(ghostData1, nowMap, ctx);
-        ghostRender(ghostData2, nowMap, ctx);
+        resizeField(ctx, () => {
+          mapRender(nowMap, ctx);
+          playerRender(playerData, nowMap, ctx);
+          ghostRender(ghostData1, nowMap, ctx);
+          ghostRender(ghostData2, nowMap, ctx);
+        });
         break;
       case 'result':
         // result rendering

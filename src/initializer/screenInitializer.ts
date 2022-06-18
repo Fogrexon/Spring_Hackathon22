@@ -6,15 +6,15 @@ export const titleKeydownEvent = (player: PlayerData) => {
     if (settings.mode === 'title') {
       switch (e.key) {
         case '1':
-          player.shurui = 'student';
-          settings.mode = 'game';
-          break;
-        case '2':
           player.shurui = 'monk';
           settings.mode = 'game';
           break;
-        case '3':
+        case '2':
           player.shurui = 'exorcist';
+          settings.mode = 'game';
+          break;
+        case '3':
+          player.shurui = 'student';
           settings.mode = 'game';
           break;
         default:
@@ -28,6 +28,9 @@ export const resultKeydownEvent = () => {
   window.addEventListener('keydown', (e) => {
     if (settings.mode === 'result') {
       if (e.key === ' ') settings.mode = 'title';
+      if (e.key === 'e') {
+        window.open(`https://twitter.com/intent/tweet?text=ConSoulを${3}分${3}秒でクリアしました！&hashtags=ConSoul`, '_blank');
+      }
     }
   });
 };
