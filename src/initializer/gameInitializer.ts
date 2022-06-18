@@ -3,14 +3,13 @@ import { GhostData } from '../data/ghostData';
 import { stageReset } from '../controller/stageController';
 
 export const gameInitializer = (playerData :PlayerData, ghostDatas:GhostData[]) => {
-
   playerData.x = 10;
   playerData.y = 10;
   playerData.targetX = 10;
   playerData.targetY = 10;
   playerData.preX = 10;
   playerData.preY = 10;
-  
+
   for (let i = 0; i < ghostDatas.length; i += 1) {
     ghostDatas[i].gx = 10;
     ghostDatas[i].gy = 10;
