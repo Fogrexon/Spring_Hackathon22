@@ -8,6 +8,7 @@ import { PlayerData } from './data/playerData';
 
 import { playerMover } from './mover/playerMover';
 import { playerInitializer } from './initializer/playerInitializer';
+import { gameInitializer } from './initializer/gameInitializer';
 
 import { getCurrentMap } from './controller/stageController';
 import {
@@ -26,12 +27,12 @@ const Hackathon = () => {
   if (!ctx) throw new Error('Canvas context not found');
 
   const playerData:PlayerData = {
-    x: 1,
-    y: 1,
+    x: 10,
+    y: 10,
     direction: 'None',
     forward: 'ArrowRight',
-    targetX: 1,
-    targetY: 1,
+    targetX: 10,
+    targetY: 10,
     preX: 1,
     preY: 1,
     start: Date.now() / 1000,
@@ -64,6 +65,7 @@ const Hackathon = () => {
     gpreY: 5,
     gstart: Date.now() / 1000,
   };
+  let preMode = 'title';
 
   playerInitializer(playerData);
 
@@ -86,6 +88,8 @@ const Hackathon = () => {
         break;
       }
       case 'game':
+        if (preMode === 'title') gameInitializer(playerData, [ghostData1, ghostData2]);
+
         ghostMover(ghostData1, nowMap, playerData); // ghostData1とか分けたい
         ghostMover(ghostData2, nowMap, playerData);
         playerMover(playerData, nowMap, [ghostData1, ghostData2]);
@@ -107,6 +111,7 @@ const Hackathon = () => {
       default:
         throw new Error('Unknown mode');
     }
+    preMode = settings.mode;
   };
 
   tick();

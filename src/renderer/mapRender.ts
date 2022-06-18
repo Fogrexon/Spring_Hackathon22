@@ -4,7 +4,9 @@ import { getImage } from '../imageloader/imageStore';
 const getRandom = (x: number, y: number) => Math.abs((Math.sin(x * 12.9898 + y * 78.233)) % 1);
 
 // アイテムを描画する処理をする必要がある。描画しなくなる必要もある。
+
 // 納品場所を描画する
+
 export const mapRender = (mapData: MapData, ctx: CanvasRenderingContext2D) => {
   const { data, width, height } = mapData;
   const { width: canvasWidth, height: canvasHeight } = ctx.canvas;

@@ -2,6 +2,7 @@
 import {
   MapData, mapData1, mapData2, mapData3,
 } from '../data/mapData';
+
 import { settings } from '../settings';
 
 const stageData = {
@@ -23,3 +24,9 @@ export const moveNextMap = () => {
 };
 
 export const getCurrentMap = () => stageData.maps[stageData.current];
+
+export const stageReset = () => {
+  for (let i = 0; i < stageData.maps.length - 1; i += 1) {
+    stageData.maps[i].exist = [true, true, true, true];
+  }
+};
