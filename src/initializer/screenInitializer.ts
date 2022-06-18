@@ -15,3 +15,11 @@ export const resultKeydownEvent = () => {
     }
   });
 };
+
+export const result2KeydownEvent = () => {
+  window.addEventListener('keydown', (e) => {
+    if (settings.mode === 'result2') {
+      if (e.key === ' ') settings.mode = 'title';
+    }
+  });
+};
