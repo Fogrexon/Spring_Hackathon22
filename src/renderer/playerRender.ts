@@ -2,21 +2,6 @@ import { MapData } from '../data/mapData';
 import { PlayerData } from '../data/playerData';
 import { getImage } from '../imageloader/imageStore';
 
-const baseXList = [
-
-]
-const getPlayerSpos = (playerData: PlayerData) => {
-  // TODO: プレイヤーの種類で変える
-  const baseY = 0;
-  const dir = [playerData.targetX - playerData.preX, playerData.targetY - playerData.preY];
-  let baseX = 0;
-  if (dir[0] === -1 && dir[1] === 0) {
-
-  } else 
-
-  return 
-}
-
 export const playerRender = (
   playerData: PlayerData,
   mapData: MapData,
@@ -29,5 +14,5 @@ export const playerRender = (
   const dx = canvasWidth / mapData.width;
   const dy = canvasHeight / mapData.height;
   const playerImage = getImage('player');
-  ctx.drawImage(playerImage, x * dx, y * dy, dx, dy);
+  ctx.drawImage(playerImage, 0, 0, 64, 64, x * dx, y * dy, dx, dy);
 };
