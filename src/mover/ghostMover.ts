@@ -1,16 +1,20 @@
 import { GhostData } from '../data/ghostData';
 import { MapData } from '../data/mapData';
 import { PlayerData } from '../data/playerData';
-import { ghostType } from '../type/ghostType';
+import { AroundValue, ghostType } from '../type/ghostType';
 
 export const checkCollisionWall = (gx:number, gy:number, mapData: MapData) => {
   const { width } = mapData;
   return mapData.data[gy * width + gx] !== '#';
 };
 // ある方向に一マス移動する
-export const ghostMover = (tekito: GhostData, mapData: MapData, playerData: PlayerData) => {
+export const ghostMover = (
+  tekito: GhostData,
+  mapData: MapData,
+  playerData: PlayerData,
+) => {
   const gnow = Date.now() / 1000;
-  const ginterval = 0.1;
+  const ginterval = 1;
 
   // 座標と動きもろもろ.ここはghostDataで123の区別はつかないのか.ghostDataにghostData1,2,3をいれたい
 

@@ -49,10 +49,6 @@ const Hackathon = () => {
     gpreX: 5,
     gpreY: 5,
     gstart: Date.now() / 1000,
-    up: 0, // ランダムにするので同じにしておく
-    down: 0,
-    left: 0,
-    right: 0,
   };
   const ghostData2: GhostData = { // Target挙動
     gtype: 'chase',
@@ -65,10 +61,6 @@ const Hackathon = () => {
     gpreX: 5,
     gpreY: 5,
     gstart: Date.now() / 1000,
-    up: 41, // gx^2+(gy-1)^2
-    down: 61,
-    left: 41,
-    right: 61,
   };
 
   playerInitializer(playerData);
