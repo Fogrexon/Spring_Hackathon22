@@ -38,13 +38,13 @@ export const playerMover = (playerData: PlayerData, mapData: MapData, ghostDatas
   // プレイヤーの種類によってスピードを変える。
   switch (playerData.shurui) {
     case 'student':
-      interval = 0.5;
+      interval = settings.baseInterval * 0.5;
       break;
     case 'monk':
-      interval = 0.7;
+      interval = settings.baseInterval * 0.8;
       break;
     case 'exorcist':
-      interval = 0.6;
+      interval = settings.baseInterval * 0.7;
       break;
     default:
       break;

@@ -47,7 +47,7 @@ const Hackathon = () => {
     gx: 5,
     gy: 5, // ghostの初期位置
     gdirect: 'gNone',
-    ginterval: 0.5, // ?秒で次のマスに移動するとする
+    ginterval: settings.baseInterval, // ?秒で次のマスに移動するとする
     gtargetX: 5,
     gtargetY: 5,
     gpreX: 5,
@@ -59,7 +59,7 @@ const Hackathon = () => {
     gx: 5,
     gy: 5, // ghostの初期位置
     gdirect: 'gNone',
-    ginterval: 0.5, // ?秒で次のマスに移動するとする
+    ginterval: settings.baseInterval, // ?秒で次のマスに移動するとする
     gtargetX: 5,
     gtargetY: 5,
     gpreX: 5,

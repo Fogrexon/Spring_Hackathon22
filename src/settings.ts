@@ -4,4 +4,5 @@ export const settings = {
   mode: 'title' as Mode,
   start: 0,
   end: 0,
+  baseInterval: 0.30,
 };
