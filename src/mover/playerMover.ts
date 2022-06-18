@@ -25,18 +25,28 @@ const playerMeetsGhost = (player: PlayerData, ghost: GhostData) => (
   player.x < ghost.gx + 1 && ghost.gx < player.x + 1 && player.y < ghost.gy + 1 && ghost.gy < player.y + 1
 );
 
-export const playerMover = (playerData: PlayerData, mapData: MapData, ghostData: GhostData) => {
+export const playerMover = (playerData: PlayerData, mapData: MapData, ghostDatas: GhostData[]) => {
   // noting to do
   const checkCollisionWall = (x:number, y:number) => {
     const { width } = mapData;
     return mapData.data[y * width + x] !== '#';
   };
 
-  // 現在押されているキーがあるとき、その方向にtargetを設定する。そうでないときはtargetを現在位置にする。
-
-  // targetの方向にキャラクターを動かす
   const now = Date.now() / 1000;
-  const interval = 0.1;
+  let interval = 0.1;
+
+  // プレイヤーの種類によってスピードを変える。
+  switch (playerData.shurui) {
+    case 'student':
+      interval = 0.07;
+      break;
+    case 'monk':
+      interval = 0.11;
+      break;
+    case 'exorcist':
+    default:
+      break;
+  }
   // now - start < intervalのとき
   if (now - playerData.start < interval) {
     playerData.x = (playerData.targetX - playerData.preX) * ((now - playerData.start) / interval) + playerData.preX;
@@ -88,7 +98,9 @@ export const playerMover = (playerData: PlayerData, mapData: MapData, ghostData:
   }
 
   // プレイヤーが幽霊とぶつかったとき、リザルト画面に飛ぶ
-  if (playerMeetsGhost(playerData, ghostData)) {
-    settings.mode = 'result2';
+  for (let i = 0; i < ghostDatas.length; i += 1) {
+    if (playerMeetsGhost(playerData, ghostDatas[i])) {
+      settings.mode = 'result2';
+    }
   }
 };

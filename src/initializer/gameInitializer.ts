@@ -2,7 +2,7 @@ import { PlayerData } from '../data/playerData';
 import { GhostData } from '../data/ghostData';
 import { stageReset } from '../controller/stageController';
 
-export const gameInitializer = (playerData :PlayerData, ghostData:GhostData) => {
+export const gameInitializer = (playerData :PlayerData, ghostDatas:GhostData[]) => {
 
   playerData.x = 10;
   playerData.y = 10;
@@ -10,12 +10,14 @@ export const gameInitializer = (playerData :PlayerData, ghostData:GhostData) => 
   playerData.targetY = 10;
   playerData.preX = 10;
   playerData.preY = 10;
-  ghostData.gx = 5;
-  ghostData.gy = 5;
-  ghostData.gtargetX = 5;
-  ghostData.gtargetY = 5;
-  ghostData.gpreX = 5;
-  ghostData.gpreY = 5;
-
+  
+  for (let i = 0; i < ghostDatas.length; i += 1) {
+    ghostDatas[i].gx = 10;
+    ghostDatas[i].gy = 10;
+    ghostDatas[i].gtargetX = 5;
+    ghostDatas[i].gtargetY = 5;
+    ghostDatas[i].gpreX = 5;
+    ghostDatas[i].gpreY = 5;
+  }
   stageReset();
 };
