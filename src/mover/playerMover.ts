@@ -2,6 +2,7 @@
 import { MapData } from '../data/mapData';
 import { PlayerData } from '../data/playerData';
 import { GhostData } from '../data/ghostData';
+import { settings } from '../settings';
 
 // プレイヤーがアイテムを所持していない状態でアイテムをゲットしたとき
 // プレイヤーの次の位置を取得する
@@ -76,9 +77,9 @@ export const playerMover = (playerData: PlayerData, mapData: MapData, ghostData:
       playerData.have = 0;
     }
 
-    // プレイヤーが幽霊とぶつかったとき
+    // プレイヤーが幽霊とぶつかったとき、リザルト画面に飛ぶ
     if (playerMeetsGhost(playerData, ghostData)) {
-      playerData.status = 'dead';
+      settings.mode = 'result';
     }
   }
   // playerData.x += (playerData.targetX - playerData.preX) * ((t  - start) / interval);
