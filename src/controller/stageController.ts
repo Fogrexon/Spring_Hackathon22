@@ -4,6 +4,8 @@ import {
 } from '../data/mapData';
 import { settings } from '../settings';
 
+// プレイヤーが死んだときにすることをかく。エクスポートする。プレイヤー側で呼び出す。
+
 const stageData = {
   current: 0 as number,
   maps: [

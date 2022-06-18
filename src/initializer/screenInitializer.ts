@@ -17,13 +17,7 @@ export const titleKeydownEvent = () => {
 export const resultKeydownEvent = () => {
   if (settings.mode === 'result') {
     window.addEventListener('keydown', (e) => {
-      switch (e.key) {
-        case ' ':
-          settings.mode = 'title';
-          break;
-          // 残りの処理は後で追加します。
-        default: // do nothing
-      }
+      if (e.key === ' ') settings.mode = 'title';
     });
   }
 };

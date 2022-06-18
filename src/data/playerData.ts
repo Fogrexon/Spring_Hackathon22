@@ -1,5 +1,4 @@
 type Direction = 'ArrowUp' | 'ArrowDown' | 'ArrowLeft' | 'ArrowRight' | 'None';
-type Status = 'dead' | 'alive';
 
 export interface PlayerData {
   x: number;
@@ -12,5 +11,4 @@ export interface PlayerData {
   start: number;
   have: number; // 今持っているアイテムの数
   nouhin: number; // 納品したアイテムの数
-  status: Status;
 }
