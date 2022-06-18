@@ -3,12 +3,12 @@ import { MapData } from '../data/mapData';
 import { PlayerData } from '../data/playerData';
 import { ghostType } from '../type/ghostType';
 
+export const checkCollisionWall = (gx:number, gy:number, mapData: MapData) => {
+  const { width } = mapData;
+  return mapData.data[gy * width + gx] !== '#';
+};
 // ある方向に一マス移動する
 export const ghostMover = (tekito: GhostData, mapData: MapData, playerData: PlayerData) => {
-  const checkCollisionWall = (gx:number, gy:number) => {
-    const { width } = mapData;
-    return mapData.data[gy * width + gx] !== '#';
-  };
   const gnow = Date.now() / 1000;
   const ginterval = 0.1;
 
@@ -20,7 +20,7 @@ export const ghostMover = (tekito: GhostData, mapData: MapData, playerData: Play
     tekito.gy = (tekito.gtargetY - tekito.gpreY)
     * ((gnow - tekito.gstart) / ginterval) + tekito.gpreY;
   } else { // 到着したとき
-    ghostType(tekito, playerData); // typeから方向決定
+    ghostType(tekito, playerData, mapData); // typeから方向決定
     tekito.gstart = gnow;
     tekito.gpreX = tekito.gtargetX;
     tekito.gpreY = tekito.gtargetY;
@@ -44,7 +44,7 @@ export const ghostMover = (tekito: GhostData, mapData: MapData, playerData: Play
       default:
         throw new Error('ghostDirectionErrorです');
     }
-    if (!checkCollisionWall(tekito.gtargetX, tekito.gtargetY)) {
+    if (!checkCollisionWall(tekito.gtargetX, tekito.gtargetY, mapData)) {
       tekito.gtargetX = tekito.gpreX;
       tekito.gtargetY = tekito.gpreY;
     }

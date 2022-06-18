@@ -12,4 +12,8 @@ export interface GhostData {
     gpreY: number;
     gstart: number;
     gdirect: Direction;
+    up:number;
+    down:number;
+    left:number;
+    right:number;
   }
