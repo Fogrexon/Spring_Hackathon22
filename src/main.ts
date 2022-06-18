@@ -35,6 +35,7 @@ const Hackathon = () => {
     start: Date.now() / 1000,
     have: 0,
     nouhin: 0,
+    shurui: 'student',
   };
   const ghostData: GhostData = {
     gx: 5,
