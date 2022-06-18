@@ -12,8 +12,8 @@ export const gameInitializer = (playerData :PlayerData, ghostDatas:GhostData[]) 
   playerData.preY = 10;
 
   for (let i = 0; i < ghostDatas.length; i += 1) {
-    ghostDatas[i].gx = 10;
-    ghostDatas[i].gy = 10;
+    ghostDatas[i].gx = 5;
+    ghostDatas[i].gy = 5;
     ghostDatas[i].gtargetX = 5;
     ghostDatas[i].gtargetY = 5;
     ghostDatas[i].gpreX = 5;
