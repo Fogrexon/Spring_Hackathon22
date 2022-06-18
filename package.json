@@ -6,8 +6,8 @@
     "dev": "vite",
     "build": "tsc && vite build --base=/Spring_Hackathon22/",
     "preview": "vite preview",
-    "lint": "eslint ./src/**/*",
-    "lint:fix": "eslint ./src/**/* --fix"
+    "lint": "eslint ./src/**/*.ts",
+    "lint:fix": "eslint ./src/**/*.ts --fix"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.27.1",

@@ -32,20 +32,25 @@ export const playerMover = (playerData: PlayerData, mapData: MapData, ghostDatas
     return mapData.data[y * width + x] !== '#';
   };
 
-  const now = Date.now() / 1000;
+  const now = performance.now() / 1000;
   let interval = 0.1;
 
   // プレイヤーの種類によってスピードを変える。
   switch (playerData.shurui) {
     case 'student':
-      interval = 0.07;
+      interval = 0.5;
       break;
     case 'monk':
-      interval = 0.11;
+      interval = 0.7;
       break;
     case 'exorcist':
+      interval = 0.6;
+      break;
     default:
       break;
+  }
+  if (playerData.targetX === playerData.preX && playerData.targetY === playerData.preY) {
+    interval = 0;
   }
   // now - start < intervalのとき
   if (now - playerData.start < interval) {
@@ -54,7 +59,9 @@ export const playerMover = (playerData: PlayerData, mapData: MapData, ghostDatas
   } else {
     playerData.start = now;
     playerData.preX = playerData.targetX;
+    playerData.x = playerData.preX;
     playerData.preY = playerData.targetY;
+    playerData.y = playerData.preY;
     playerData.forward = playerData.direction === 'None' ? playerData.forward : playerData.direction;
     switch (playerData.direction) {
       case 'ArrowUp':

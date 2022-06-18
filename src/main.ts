@@ -25,6 +25,7 @@ const Hackathon = () => {
   if (!canvas) throw new Error('Canvas not found');
   const ctx = canvas.getContext('2d');
   if (!ctx) throw new Error('Canvas context not found');
+  ctx.imageSmoothingEnabled = false;
 
   const playerData:PlayerData = {
     x: 10,
@@ -35,7 +36,7 @@ const Hackathon = () => {
     targetY: 10,
     preX: 1,
     preY: 1,
-    start: Date.now() / 1000,
+    start: 0,
     have: 0,
     nouhin: 0,
     shurui: 'student',
