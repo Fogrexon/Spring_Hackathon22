@@ -17,7 +17,7 @@ import { titleKeydownEvent, resultKeydownEvent } from './initializer/screenIniti
 
 import { GhostData } from './data/ghostData';
 import { ghostMover } from './mover/ghostMover';
-import { ghostRender } from './renderer/ghostRender';
+
 
 const Hackathon = () => {
   const canvas = document.getElementById('cnv') as HTMLCanvasElement;
