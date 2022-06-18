@@ -30,11 +30,11 @@ export const ghostRender = (
   ctx.drawImage(
     playerImage,
     xSrc,
-    GHOST_SHURUI_SRC[ghostData] + ySrc,
+    GHOST_SHURUI_SRC[ghostData.gtype] + ySrc,
     wSrc,
     hSrc,
-    x * dx,
-    y * dy,
+    gx * dx,
+    gy * dy,
     dx,
     dy,
   );

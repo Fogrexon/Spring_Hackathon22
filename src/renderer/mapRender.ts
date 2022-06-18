@@ -13,7 +13,7 @@ export const mapRender = (mapData: MapData, ctx: CanvasRenderingContext2D) => {
   for (let y = 0; y < height; y += 1) {
     for (let x = 0; x < width; x += 1) {
       const char = data[y * width + x];
-      const downChar = y === height - 1 ? '.' : data[(y - 1) * width + x];
+      const downChar = y === height - 1 ? '.' : data[(y + 1) * width + x];
       const floornum = Math.floor(getRandom(x, y) * 4);
       if (char === '.') {
         ctx.drawImage(getImage('floor'), (floornum % 2) * 64, Math.floor(floornum / 2) * 64, 64, 64, x * dx, y * dy, dx, dy);
