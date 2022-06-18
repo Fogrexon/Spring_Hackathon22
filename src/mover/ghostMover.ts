@@ -1,6 +1,7 @@
 import { GhostData } from '../data/ghostData';
 import { MapData } from '../data/mapData';
 import { PlayerData } from '../data/playerData';
+import { ghostType } from '../type/ghostType';
 
 // ある方向に一マス移動する
 export const ghostMover = (tekito: GhostData, mapData: MapData, playerData: PlayerData) => {
@@ -11,44 +12,6 @@ export const ghostMover = (tekito: GhostData, mapData: MapData, playerData: Play
   const gnow = Date.now() / 1000;
   const ginterval = 0.1;
 
-  switch (tekito.gtype) {
-    case 'random': {
-    // GhostDataがghostData1のとき
-      const random = Math.floor(Math.random() * 4);// 壁は考えていないし、外のWallも考えていない。とりまランダム移動
-      // ランダム方向決定
-      if (random === 0) {
-        tekito.gdirect = 'gUp';
-      } else if (random === 1) {
-        tekito.gdirect = 'gDown';
-      } else if (random === 2) {
-        tekito.gdirect = 'gLeft';
-      } else {
-        tekito.gdirect = 'gRight';
-      }
-      break;
-    }
-    case 'chase': { // 追跡型方向決定.x,y座標の違いを比較して大きい方に動かす
-      const dx = tekito.gx - playerData.x
-      const dy = tekito.gy - playerData.y
-      if (Math.abs(dx) >= Math.abs(dy)) { // xのほうが差が大きい
-        if (dx >= 0) { // playerからみてx正に幽霊がいるとき、方向を左側にする
-          tekito.gdirect = 'gLeft';
-        } else {
-          tekito.gdirect = 'gRight';
-        }
-      } else {
-        if (dy >= 0) { //  幽霊がplayerのしたにあるとき
-          tekito.gdirect = 'gUp';
-        } else {
-          tekito.gdirect = 'gDown';
-        }
-      }
-      break;
-    }
-    default:
-      throw new Error('Unknown GhostType');
-  }
-
   // 座標と動きもろもろ.ここはghostDataで123の区別はつかないのか.ghostDataにghostData1,2,3をいれたい
 
   if (gnow - tekito.gstart < ginterval) {
@@ -57,6 +20,7 @@ export const ghostMover = (tekito: GhostData, mapData: MapData, playerData: Play
     tekito.gy = (tekito.gtargetY - tekito.gpreY)
     * ((gnow - tekito.gstart) / ginterval) + tekito.gpreY;
   } else { // 到着したとき
+    ghostType(tekito, playerData); // typeから方向決定
     tekito.gstart = gnow;
     tekito.gpreX = tekito.gtargetX;
     tekito.gpreY = tekito.gtargetY;
