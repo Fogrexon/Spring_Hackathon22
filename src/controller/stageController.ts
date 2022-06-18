@@ -20,13 +20,14 @@ export const moveNextMap = () => {
     stageData.current += 1;
   } else {
     settings.mode = 'result';
+    settings.end = performance.now();
   }
 };
 
 export const getCurrentMap = () => stageData.maps[stageData.current];
 
 export const stageReset = () => {
-  for (let i = 0; i < stageData.maps.length - 1; i += 1) {
+  for (let i = 0; i < stageData.maps.length ; i += 1) {
     stageData.maps[i].exist = [true, true, true, true];
   }
 };
