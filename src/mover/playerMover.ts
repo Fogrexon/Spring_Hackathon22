@@ -19,8 +19,10 @@ const getItemFromMap = (player: PlayerData, map: MapData) => {
 // プレイヤーが納品した時の処理を書く
 const checkNouhin = (player: PlayerData, map: MapData) => (player.preX === map.post[0] && player.preY === map.post[1]);
 
-// プレイヤーが幽霊とぶつかったとき（とりあえず幽霊を1体しかいないとする。
-const playerMeetsGhost = (player: PlayerData, ghost: GhostData) => (player.preX === ghost.gpreX && player.preY === ghost.gpreY);
+// プレイヤーが幽霊とぶつかったとき（とりあえず幽霊を1体しかいないとする。）
+const playerMeetsGhost = (player: PlayerData, ghost: GhostData) => (
+  player.x < ghost.gx + 1 && ghost.gx < player.x + 1 && player.y < ghost.gy + 1 && ghost.gy < player.y + 1
+);
 
 export const playerMover = (playerData: PlayerData, mapData: MapData, ghostData: GhostData) => {
   // noting to do

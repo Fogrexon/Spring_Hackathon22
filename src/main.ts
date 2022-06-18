@@ -51,7 +51,7 @@ const Hackathon = () => {
   playerInitializer(playerData);
 
   // keydownイベントが起こったときの画面遷移
-  titleKeydownEvent(); // from ./screenDrawing.ts
+  titleKeydownEvent();
   resultKeydownEvent();
 
   const tick = () => {
@@ -64,7 +64,7 @@ const Hackathon = () => {
     switch (settings.mode) {
       case 'title': {
         // title rendering
-        titleRendering(ctx); // from ./screenDrawing.ts
+        titleRendering(ctx);
         break;
       }
       case 'game':
@@ -77,7 +77,7 @@ const Hackathon = () => {
         break;
       case 'result':
         // result rendering
-        resultRendering(ctx); // from ./screenDrawing.ts
+        resultRendering(ctx);
         break;
       default:
         throw new Error('Unknown mode');
