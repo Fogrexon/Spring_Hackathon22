@@ -52,7 +52,7 @@ const Hackathon = () => {
   playerInitializer(playerData);
 
   // keydownイベントが起こったときの画面遷移
-  titleKeydownEvent();
+  titleKeydownEvent(playerData);
   resultKeydownEvent();
   result2KeydownEvent();
 
