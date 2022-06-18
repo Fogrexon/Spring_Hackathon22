@@ -1,7 +1,5 @@
 export const titleRendering = (ctx:CanvasRenderingContext2D) => {
-  const COL_TEXT = 'rgba(0,0,0,1)';// テキストの色
-
-  ctx.fillStyle = COL_TEXT;
+  ctx.fillStyle = '#000';
   ctx.font = '32px sans-serif';
   ctx.fillText('Game Title', 220, 50);
   ctx.font = '16px sans-serif';
@@ -13,6 +11,7 @@ export const titleRendering = (ctx:CanvasRenderingContext2D) => {
 
 export const resultRendering = (ctx:CanvasRenderingContext2D) => {
   ctx.font = '32px sans-serif';
+  ctx.fillStyle = '#000';
   ctx.fillText('Your got <score> points!!', 100, 100);
   ctx.fillText('Press space to back to Start', 100, 200);
 };
