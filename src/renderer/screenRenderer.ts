@@ -14,6 +14,14 @@ export const resultRendering = (ctx:CanvasRenderingContext2D) => {
   const aspect = resultImage.width / resultImage.height;
   const x = (height * aspect - width) / 2;
   ctx.drawImage(resultImage, -x, 0, height * aspect, height);
+
+  ctx.fillStyle = '#ffffff';
+  // ctx.font = '100px sans-serif';
+  ctx.font = '75px "Press Start 2P", sans-serif';
+  const minutes = '03';
+  const seconds = '00';
+  ctx.fillText(minutes, 125, 290);
+  ctx.fillText(seconds, 325, 290);
 };
 
 export const result2Rrendering = (ctx:CanvasRenderingContext2D) => {
