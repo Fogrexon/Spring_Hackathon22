@@ -22,5 +22,5 @@ export const gameInitializer = (playerData :PlayerData, ghostDatas:GhostData[]) 
     ghostDatas[i].gpreY = 5;
   }
   stageReset();
-  settings.start= performance.now();
+  settings.start = performance.now();
 };
