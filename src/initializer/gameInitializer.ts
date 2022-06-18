@@ -1,9 +1,9 @@
 import { PlayerData } from '../data/playerData';
-import { MapData } from '../data/mapData';
 import { GhostData } from '../data/ghostData';
 import { stageReset } from '../controller/stageController';
 
-export const gameInitializer = (playerData :PlayerData, mapData :MapData, ghostData:GhostData) => {
+export const gameInitializer = (playerData :PlayerData, ghostData:GhostData) => {
+
   playerData.x = 10;
   playerData.y = 10;
   playerData.targetX = 10;

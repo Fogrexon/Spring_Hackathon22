@@ -18,7 +18,6 @@ import { titleKeydownEvent, resultKeydownEvent, result2KeydownEvent } from './in
 
 import { GhostData } from './data/ghostData';
 import { ghostMover } from './mover/ghostMover';
-import { mapData3 } from './data/mapData';
 
 const Hackathon = () => {
   const canvas = document.getElementById('cnv') as HTMLCanvasElement;
@@ -73,7 +72,7 @@ const Hackathon = () => {
       }
       case 'game':
 
-        if (preMode === 'title') gameInitializer(playerData, mapData3, ghostData);
+        if (preMode === 'title') gameInitializer(playerData, ghostData);
         playerMover(playerData, nowMap, ghostData);
         ghostMover(ghostData, nowMap);
         mapRender(nowMap, ctx);
