@@ -20,6 +20,7 @@ export const moveNextMap = () => {
     stageData.current += 1;
   } else {
     settings.mode = 'result';
+    settings.end = performance.now();
   }
 };
 
