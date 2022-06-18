@@ -1,6 +1,6 @@
 import { MapData } from '../data/mapData';
 // アイテムを描画する処理をする必要がある。描画しなくなる必要もある。
- 
+
 // 納品場所を描画する
 
 export const mapRender = (mapData: MapData, ctx: CanvasRenderingContext2D) => {
@@ -20,7 +20,6 @@ export const mapRender = (mapData: MapData, ctx: CanvasRenderingContext2D) => {
     }
   }
 
-
   // アイテムの描画
   ctx.fillStyle = '#00f';
   for (let i = 0; i < mapData.items.length; i += 1) {
@@ -30,5 +29,4 @@ export const mapRender = (mapData: MapData, ctx: CanvasRenderingContext2D) => {
   // 納品場所の描画
   ctx.fillStyle = '#0f0';
   ctx.fillRect(mapData.post[0] * dx, mapData.post[1] * dy, dx, dy);
-
 };

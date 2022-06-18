@@ -24,3 +24,9 @@ export const moveNextMap = () => {
 };
 
 export const getCurrentMap = () => stageData.maps[stageData.current];
+
+export const stageReset = () => {
+  for (let i = 0; i < stageData.maps.length - 1; i += 1) {
+
+  }
+};

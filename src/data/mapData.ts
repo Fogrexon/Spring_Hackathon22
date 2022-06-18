@@ -32,9 +32,9 @@ export const mapData1: MapData = {
 `.replace(/\n/g, ''),
   width: 20,
   height: 20,
-  items: [[3, 3], [16, 16], [18, 1],[1,18]],
-  exist: [true, true, true,true],
-  post: [10, 10],
+  items: [[3, 3], [16, 16], [18, 1], [1, 18]],
+  exist: [true, true, true, true],
+  post: [9, 9],
 };
 
 export const mapData2: MapData = {
@@ -62,9 +62,9 @@ export const mapData2: MapData = {
 `.replace(/\n/g, ''),
   width: 20,
   height: 20,
-  items: [[1, 1], [16, 3], [3, 17],[18,18]],
-  exist: [true, true, true,true],
-  post: [10, 10],
+  items: [[1, 1], [16, 3], [3, 17], [18, 18]],
+  exist: [true, true, true, true],
+  post: [10, 9],
 };
 
 export const mapData3: MapData = {
@@ -92,7 +92,7 @@ export const mapData3: MapData = {
 `.replace(/\n/g, ''),
   width: 20,
   height: 20,
-  items: [[1, 1], [18, 1], [1, 18],[18,18]],
-  exist: [true, true, true,true],
-  post: [10, 10],
+  items: [[1, 1], [18, 1], [1, 18], [18, 18]],
+  exist: [true, true, true, true],
+  post: [10, 9],
 };
