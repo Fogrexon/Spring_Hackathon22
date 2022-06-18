@@ -19,5 +19,4 @@ export const gameInitializer = (playerData :PlayerData, mapData :MapData, ghostD
   ghostData.gpreY = 5;
 
   stageReset();
-  
 };
