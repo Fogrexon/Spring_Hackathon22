@@ -28,6 +28,7 @@ const Hackathon = () => {
     x: 1,
     y: 1,
     direction: 'None',
+    forward: 'ArrowRight',
     targetX: 1,
     targetY: 1,
     preX: 1,

@@ -4,6 +4,7 @@ export interface PlayerData {
   x: number;
   y: number;
   direction: Direction;
+  forward: Direction;
   targetX: number;
   targetY: number;
   preX: number;

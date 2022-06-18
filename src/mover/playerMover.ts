@@ -45,6 +45,7 @@ export const playerMover = (playerData: PlayerData, mapData: MapData, ghostData:
     playerData.start = now;
     playerData.preX = playerData.targetX;
     playerData.preY = playerData.targetY;
+    playerData.forward = playerData.direction === 'None' ? playerData.forward : playerData.direction;
     switch (playerData.direction) {
       case 'ArrowUp':
         playerData.targetX = playerData.preX;
