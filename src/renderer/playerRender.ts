@@ -10,7 +10,6 @@ const PLAYER_DIRECTION_SRC: Record<string, number[]> = {
   None: [0, 0, 0, 0],
 };
 
-
 export const playerRender = (
   playerData: PlayerData,
   mapData: MapData,
