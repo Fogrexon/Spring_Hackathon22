@@ -16,6 +16,12 @@ const aroundvalue: AroundValue = {
   down: Math.floor(Math.random() * (-1000)), // 負の値からランダムな初期距離を代入
 };
 
+const playerTypeRange = {
+  student: 20 * 20,
+  exorcist: 6 * 6,
+  monk: 4 * 4,
+};
+
 export const ghostType = (
   tekito: GhostData,
   playerData: PlayerData,
@@ -76,7 +82,15 @@ export const ghostType = (
     }
   };
 
-  switch (tekito.gtype) {
+  const dx = tekito.gx - playerData.x;
+  const dy = tekito.gy - playerData.y;
+  const distance = dx * dx + dy * dy;
+  let algorithm = tekito.gtype;
+  if (distance > playerTypeRange[playerData.shurui]) {
+    algorithm = 'random';
+  }
+
+  switch (algorithm) {
     case 'random': { // GhostDataがghostData1のとき
       checkAroundValue();
       // 距離の最小値を取ろう。距離は考えてないので追跡はしない
@@ -86,8 +100,6 @@ export const ghostType = (
       break;
     }
     case 'chase': { // 距離での判定
-      const dx = tekito.gx - playerData.x;
-      const dy = tekito.gy - playerData.y;
       aroundvalue.up = dx ** 2 + (dy - 1) ** 2;
       aroundvalue.down = dx ** 2 + (dy + 1) ** 2;
       aroundvalue.left = (dx - 1) ** 2 + dy ** 2;
