@@ -5,8 +5,6 @@ import {
 
 import { settings } from '../settings';
 
-
-
 const stageData = {
   current: 0 as number,
   maps: [
@@ -17,7 +15,7 @@ const stageData = {
 };
 
 export const moveNextMap = () => {
-  // 次のマップに移動  
+  // 次のマップに移動
   if (stageData.current < stageData.maps.length - 1) {
     stageData.current += 1;
   } else {
