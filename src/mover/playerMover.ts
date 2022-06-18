@@ -3,6 +3,7 @@ import { MapData } from '../data/mapData';
 import { PlayerData } from '../data/playerData';
 import { GhostData } from '../data/ghostData';
 import { settings } from '../settings';
+import { moveNextMap } from '../controller/stageController';
 
 // プレイヤーがアイテムを所持していない状態でアイテムをゲットしたとき
 // プレイヤーの次の位置を取得する
@@ -70,7 +71,8 @@ export const playerMover = (playerData: PlayerData, mapData: MapData, ghostData:
     }
     // アイテム取得時
     if (getItemFromMap(playerData, mapData) !== -1 && playerData.have === 0) {
-      playerData.have += 1;
+      playerData.have = 1;
+      getItemFromMap(playerData, mapData);
     }
 
     // プレイヤーが納品したとき
@@ -83,6 +85,11 @@ export const playerMover = (playerData: PlayerData, mapData: MapData, ghostData:
     if (playerMeetsGhost(playerData, ghostData)) {
       settings.mode = 'result';
     }
+
+    // プレイヤーが全て納品したとき、moveNextMapする。
+    if (playerData.nouhin === mapData.items.length) {
+      playerData.nouhin = 0;
+      moveNextMap();
+    }
   }
-  // playerData.x += (playerData.targetX - playerData.preX) * ((t  - start) / interval);
 };
