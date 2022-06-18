@@ -10,7 +10,6 @@ export const gameInitializer = (playerData :PlayerData, mapData :MapData, ghostD
   playerData.targetY = 10;
   playerData.preX = 10;
   playerData.preY = 10;
-  mapData.exist = [true, true, true, true];
   ghostData.gx = 5;
   ghostData.gy = 5;
   ghostData.gtargetX = 5;
