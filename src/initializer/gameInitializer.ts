@@ -10,6 +10,8 @@ export const gameInitializer = (playerData :PlayerData, ghostDatas:GhostData[]) 
   playerData.targetY = 10;
   playerData.preX = 10;
   playerData.preY = 10;
+  playerData.have = 0;
+  playerData.nouhin = 0;
 
   for (let i = 0; i < ghostDatas.length; i += 1) {
     ghostDatas[i].gx = 5;
@@ -20,5 +22,5 @@ export const gameInitializer = (playerData :PlayerData, ghostDatas:GhostData[]) 
     ghostDatas[i].gpreY = 5;
   }
   stageReset();
-  settings.start= performance.now();
+  settings.start = performance.now();
 };
