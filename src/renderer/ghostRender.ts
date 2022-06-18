@@ -39,17 +39,19 @@ export const ghostRender = (
     dy,
   );
 
-  const time = (performance.now() / 1000) * 4;
-  const id = Math.floor(time) % 3;
-  ctx.drawImage(
-    getImage('heartAnimation'),
-    id * 64,
-    0,
-    64,
-    64,
-    gx * dx,
-    gy * dy,
-    dx,
-    dy,
-  );
+  if (ghostData.find) {
+    const time = (performance.now() / 1000) * 4;
+    const id = Math.floor(time) % 3;
+    ctx.drawImage(
+      getImage('heartAnimation'),
+      id * 64,
+      0,
+      64,
+      64,
+      gx * dx,
+      gy * dy,
+      dx,
+      dy,
+    );
+  }
 };

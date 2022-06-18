@@ -53,6 +53,7 @@ const Hackathon = () => {
     gpreX: 5,
     gpreY: 5,
     gstart: Date.now() / 1000,
+    find: false,
   };
   const ghostData2: GhostData = { // Target挙動
     gtype: 'chase',
@@ -65,6 +66,7 @@ const Hackathon = () => {
     gpreX: 5,
     gpreY: 5,
     gstart: Date.now() / 1000,
+    find: false,
   };
   let preMode = 'title';
 

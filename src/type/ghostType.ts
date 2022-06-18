@@ -86,8 +86,11 @@ export const ghostType = (
   const dy = tekito.gy - playerData.y;
   const distance = dx * dx + dy * dy;
   let algorithm = tekito.gtype;
-  if (distance > playerTypeRange[playerData.shurui]) {
+  tekito.find = false;
+  if (algorithm === 'random' || distance > playerTypeRange[playerData.shurui]) {
     algorithm = 'random';
+  } else {
+    tekito.find = true;
   }
 
   switch (algorithm) {
