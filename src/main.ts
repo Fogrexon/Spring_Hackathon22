@@ -11,13 +11,12 @@ import { playerInitializer } from './initializer/playerInitializer';
 
 import { getCurrentMap } from './controller/stageController';
 import {
-  titleRendering, resultRendering,
+  titleRendering, resultRendering, result2Rrendering,
 } from './renderer/screenRenderer';
-import { titleKeydownEvent, resultKeydownEvent } from './initializer/screenInitializer';
+import { titleKeydownEvent, resultKeydownEvent, result2KeydownEvent } from './initializer/screenInitializer';
 
 import { GhostData } from './data/ghostData';
 import { ghostMover } from './mover/ghostMover';
-import { ghostRender } from './renderer/ghostRender';
 
 const Hackathon = () => {
   const canvas = document.getElementById('cnv') as HTMLCanvasElement;
@@ -36,6 +35,7 @@ const Hackathon = () => {
     start: Date.now() / 1000,
     have: 0,
     nouhin: 0,
+    shurui: 'student',
   };
 
   const ghostData1: GhostData = { // ランダム挙動
@@ -66,27 +66,28 @@ const Hackathon = () => {
   playerInitializer(playerData);
 
   // keydownイベントが起こったときの画面遷移
-  titleKeydownEvent(); // from ./screenDrawing.ts
+  titleKeydownEvent(playerData);
   resultKeydownEvent();
+  result2KeydownEvent();
 
   const tick = () => {
     requestAnimationFrame(tick);
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    const nowMap = getCurrentMap(); 
+    const nowMap = getCurrentMap();
 
     switch (settings.mode) {
       case 'title': {
         // title rendering
-        titleRendering(ctx); // from ./screenDrawing.ts
+        titleRendering(ctx);
         break;
       }
       case 'game':
 
-        playerMover(playerData, nowMap);
         ghostMover(ghostData1, nowMap, playerData); // ghostData1とか分けたい
         ghostMover(ghostData2, nowMap, playerData);
+        playerMover(playerData, nowMap, [ghostData1, ghostData2]);
         mapRender(nowMap, ctx);
         playerRender(playerData, nowMap, ctx);
         ghostRender(ghostData1, nowMap, ctx);
@@ -94,7 +95,11 @@ const Hackathon = () => {
         break;
       case 'result':
         // result rendering
-        resultRendering(ctx); // from ./screenDrawing.ts
+        resultRendering(ctx);
+        break;
+      case 'result2':
+        // 失敗時result rendering
+        result2Rrendering(ctx);
         break;
       default:
         throw new Error('Unknown mode');

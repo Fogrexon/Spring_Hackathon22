@@ -1,5 +1,5 @@
-type Mode = 'title' | 'game' | 'result';
+type Mode = 'title' | 'game' | 'result' | 'result2';
 
 export const settings = {
-  mode: 'game' as Mode,
+  mode: 'title' as Mode,
 };

@@ -1,29 +1,41 @@
+import { PlayerData } from '../data/playerData';
 import { settings } from '../settings';
 
-export const titleKeydownEvent = () => {
-  if (settings.mode === 'title') {
-    window.addEventListener('keydown', (e) => {
+export const titleKeydownEvent = (player: PlayerData) => {
+  window.addEventListener('keydown', (e) => {
+    if (settings.mode === 'title') {
       switch (e.key) {
-        case ' ':
+        case '1':
+          player.shurui = 'student';
           settings.mode = 'game';
           break;
-          // 残りの処理は後で追加します。
-        default: // do nothing
+        case '2':
+          player.shurui = 'monk';
+          settings.mode = 'game';
+          break;
+        case '3':
+          player.shurui = 'exorcist';
+          settings.mode = 'game';
+          break;
+        default:
+          break;
       }
-    });
-  }
+    }
+  });
 };
 
 export const resultKeydownEvent = () => {
-  if (settings.mode === 'result') {
-    window.addEventListener('keydown', (e) => {
-      switch (e.key) {
-        case ' ':
-          settings.mode = 'title';
-          break;
-          // 残りの処理は後で追加します。
-        default: // do nothing
-      }
-    });
-  }
+  window.addEventListener('keydown', (e) => {
+    if (settings.mode === 'result') {
+      if (e.key === ' ') settings.mode = 'title';
+    }
+  });
+};
+
+export const result2KeydownEvent = () => {
+  window.addEventListener('keydown', (e) => {
+    if (settings.mode === 'result2') {
+      if (e.key === ' ') settings.mode = 'title';
+    }
+  });
 };
