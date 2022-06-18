@@ -10,7 +10,6 @@ import { playerMover } from './mover/playerMover';
 import { playerInitializer } from './initializer/playerInitializer';
 import { gameInitializer } from './initializer/gameInitializer';
 
-
 import { getCurrentMap } from './controller/stageController';
 import {
   titleRendering, resultRendering,
@@ -50,7 +49,7 @@ const Hackathon = () => {
     gpreY: 5,
     gstart: Date.now() / 1000,
   };
-let preMode = 'title';
+  let preMode = 'title';
 
   playerInitializer(playerData);
 
@@ -58,13 +57,10 @@ let preMode = 'title';
   titleKeydownEvent();
   resultKeydownEvent();
 
-  
   const tick = () => {
     requestAnimationFrame(tick);
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-     
 
     const nowMap = getCurrentMap();
 
