@@ -3,12 +3,13 @@ import { MapData } from '../data/mapData';
 import { PlayerData } from '../data/playerData';
 import { GhostData } from '../data/ghostData';
 import { settings } from '../settings';
+import { moveNextMap } from '../controller/stageController';
 
 // プレイヤーがアイテムを所持していない状態でアイテムをゲットしたとき
 // プレイヤーの次の位置を取得する
 const getItemFromMap = (player: PlayerData, map: MapData) => {
   for (let i = 0; i < map.items.length; i += 1) {
-    if (player.preX === map.items[i][0] && player.preY === map.items[i][1] && player.have === 0) {
+    if (player.preX === map.items[i][0] && player.preY === map.items[i][1] && player.have === 0 && map.exist[i]) {
       map.exist[i] = false;
       return i;
     }
@@ -70,7 +71,7 @@ export const playerMover = (playerData: PlayerData, mapData: MapData, ghostData:
     }
     // アイテム取得時
     if (getItemFromMap(playerData, mapData) !== -1 && playerData.have === 0) {
-      playerData.have += 1;
+      playerData.have = 1;
     }
 
     // プレイヤーが納品したとき
@@ -79,10 +80,15 @@ export const playerMover = (playerData: PlayerData, mapData: MapData, ghostData:
       playerData.have = 0;
     }
 
-    // プレイヤーが幽霊とぶつかったとき、リザルト画面に飛ぶ
-    if (playerMeetsGhost(playerData, ghostData)) {
-      settings.mode = 'result';
+    // プレイヤーが全て納品したとき、moveNextMapする。
+    if (playerData.nouhin === mapData.items.length) {
+      playerData.nouhin = 0;
+      moveNextMap();
     }
   }
-  // playerData.x += (playerData.targetX - playerData.preX) * ((t  - start) / interval);
+
+  // プレイヤーが幽霊とぶつかったとき、リザルト画面に飛ぶ
+  if (playerMeetsGhost(playerData, ghostData)) {
+    settings.mode = 'result2';
+  }
 };
