@@ -28,7 +28,7 @@ export const mapRender = (mapData: MapData, ctx: CanvasRenderingContext2D) => {
   // アイテムの描画
   for (let i = 0; i < mapData.items.length; i += 1) {
     const [x, y] = mapData.items[i];
-    if (mapData.exist[i]) ctx.drawImage(getImage('item'), 64 * i + 64, 0, 64, 64, x * dx, y * dy, dx, dy);
+    if (mapData.exist[i]) ctx.drawImage(getImage('item'), 64 * (i % 3) + 64, 0, 64, 64, x * dx, y * dy, dx, dy);
   }
 
   // 納品場所の描画
