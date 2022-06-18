@@ -15,3 +15,10 @@ export const resultRendering = (ctx:CanvasRenderingContext2D) => {
   ctx.fillText('Your got <score> points!!', 100, 100);
   ctx.fillText('Press space to back to Start', 100, 200);
 };
+
+export const result2Rrendering = (ctx:CanvasRenderingContext2D) => {
+  ctx.font = '32px sans-serif';
+  ctx.fillStyle = '#000';
+  ctx.fillText('You failed...', 100, 100);
+  ctx.fillText('Press space to back to Start', 100, 200);
+};

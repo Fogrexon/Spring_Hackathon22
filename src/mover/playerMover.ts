@@ -89,6 +89,6 @@ export const playerMover = (playerData: PlayerData, mapData: MapData, ghostData:
 
   // プレイヤーが幽霊とぶつかったとき、リザルト画面に飛ぶ
   if (playerMeetsGhost(playerData, ghostData)) {
-    settings.mode = 'result';
+    settings.mode = 'result2';
   }
 };
