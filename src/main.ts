@@ -17,6 +17,7 @@ import { titleKeydownEvent, resultKeydownEvent, result2KeydownEvent } from './in
 
 import { GhostData } from './data/ghostData';
 import { ghostMover } from './mover/ghostMover';
+import { resizeField } from './renderer/resizeField';
 
 const Hackathon = () => {
   const canvas = document.getElementById('cnv') as HTMLCanvasElement;
@@ -71,12 +72,13 @@ const Hackathon = () => {
         break;
       }
       case 'game':
-
         playerMover(playerData, nowMap, ghostData);
         ghostMover(ghostData, nowMap);
-        mapRender(nowMap, ctx);
-        playerRender(playerData, nowMap, ctx);
-        ghostRender(ghostData, nowMap, ctx);
+        resizeField(ctx, () => {
+          mapRender(nowMap, ctx);
+          playerRender(playerData, nowMap, ctx);
+          ghostRender(ghostData, nowMap, ctx);
+        });
         break;
       case 'result':
         // result rendering
