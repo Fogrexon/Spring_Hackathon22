@@ -1,4 +1,5 @@
 import { PlayerData } from '../data/playerData';
+import { getPlayTime } from '../renderer/screenRenderer';
 import { settings } from '../settings';
 
 export const titleKeydownEvent = (player: PlayerData) => {
@@ -29,7 +30,8 @@ export const resultKeydownEvent = () => {
     if (settings.mode === 'result') {
       if (e.key === ' ') settings.mode = 'title';
       if (e.key === 'e') {
-        window.open(`https://twitter.com/intent/tweet?text=ConSoulを${3}分${3}秒でクリアしました！&hashtags=ConSoul`, '_blank');
+        const { minutes, seconds } = getPlayTime();
+        window.open(`https://twitter.com/intent/tweet?text=ConSoulを${minutes}分${seconds}秒でクリアしました！&hashtags=ConSoul`, '_blank');
       }
     }
   });
